@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
+from .forms import PostForm
 from .models import Post
 
 
@@ -16,3 +17,10 @@ def detail(request, pk):
         'post': post
     }
     return render(request, 'blog/detail.html', context)
+
+def new_post(request):
+    form = PostForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'blog/new_post.html', context)
