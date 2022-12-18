@@ -36,6 +36,8 @@ body {
 }
 
 .nav-link img {
+    filter: invert(67%) sepia(50%) saturate(1135%) hue-rotate(305deg) brightness(86%) contrast(106%);
+
     min-height: 36pt;
 }
 
