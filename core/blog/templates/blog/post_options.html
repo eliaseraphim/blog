@@ -2,7 +2,7 @@
     <article class="post">
         {% if user.is_authenticated %}
             <aside class="actions">
-                <a class="btn btn-secondary" href="{% url 'edit_post' pk=post.pk %}">Edit</a>
+                <a class="btn btn-primary" href="{% url 'edit_post' pk=post.pk %}">Edit</a>
             </aside>
         {% endif %}
         <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
