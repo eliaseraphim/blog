@@ -30,7 +30,9 @@ body {
     margin-bottom: 20px;
 }
 
-.navbar-brand {
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:visited {
     color: var(--red_1);
     font-size: 36pt;
 }
