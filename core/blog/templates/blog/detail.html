@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% if post %}
+        <article>
+            <time>created: {{ post.date_created }} | published: {{ post.date_published }}</time>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" style="max-height: 500px;">
+                <p>{{ post.image.url }}</p>
+            {% endif %}
+            <p>{{ post.author }}</p>
+            <hr>
+        </article>
+    {% else %}
+        <p>Something went wrong, post not found...</p>
+    {% endif %}
+{% endblock %}
