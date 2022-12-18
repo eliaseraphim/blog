@@ -1,21 +1,25 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    {% if posts %}
-        {% for post in posts %}
-            <article>
-                <time>created: {{ post.date_created }} | published: {{ post.date_published }}</time>
-                <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-                {% if post.image %}
-                    <img src="{{ post.image.url }}" style="max-height: 500px;">
-                    <p>{{ post.image.url }}</p>
-                {% endif %}
-                <p>{{ post.author }}</p>
-                <hr>
-            </article>
-        {% endfor %}
-    {% else %}
-        <p>No posts found.</p>
-    {% endif %}
+    <div class="row">
+        <div class="col">
+            {% if posts %}
+                {% for post in posts %}
+                    <article class="post">
+                        <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" style="max-height: 500px;">
+                            <p>{{ post.image.url }}</p>
+                        {% endif %}
+                        <p>{{ post.author }}</p>
+                        <time class="date">created: {{ post.date_created }} | published: {{ post.date_published }}</time>
+                        <hr>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>No posts found.</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
