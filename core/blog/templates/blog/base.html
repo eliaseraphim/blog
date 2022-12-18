@@ -25,9 +25,11 @@
                 <div class="collapse navbar-collapse flex-grow-1 text-right" id="navbarNav">
                     <ul class="navbar-nav ms-auto flex-nowrap">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'new_post' %}">
-                                <img src="{% static 'blog/icons/pen.svg' %}">
-                            </a>
+                            {% if user.is_authenticated %}
+                                <a class="nav-link" href="{% url 'new_post' %}">
+                                    <img src="{% static 'blog/icons/pen.svg' %}">
+                                </a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
