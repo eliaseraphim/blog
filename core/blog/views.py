@@ -4,7 +4,7 @@ from .models import Post
 
 
 def index(request):
-    posts = Post.objects.order_by('-date_published')
+    posts = Post.objects.filter(date_published__isnull=False).order_by('-date_published')
     context = {
         'posts': posts
     }
