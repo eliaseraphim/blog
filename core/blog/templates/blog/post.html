@@ -5,10 +5,10 @@
             <p>{{ post.text|linebreaksbr }}</p>
             {% if post.image %}
                 <img src="{{ post.image.url }}" style="max-height: 500px;">
-                <p>{{ post.image.url }}</p>
+                <p class="image-location">{{ post.image.url }}</p>
             {% endif %}
             <div class="information">
-                <p class="author">{{ post.author }}</p>
+                <p class="author">author: {{ post.author }}</p>
                 <time class="date">created: {{ post.date_created }} | published: {{ post.date_published }}</time>
             </div>
         </div>

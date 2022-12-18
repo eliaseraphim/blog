@@ -45,22 +45,37 @@ body {
 .post h2 a,
 .post h2 a:visited,
 .post h2 a:active {
-    color: var(--green);
+    color: var(--cyan);
     font-size: 24pt;
     text-decoration: none;
 }
 
 .post > div {
     padding-left: 20px;
+    padding-right: 20px;
+}
+
+.post .image-location {
+    margin-bottom: 5px;
 }
 
 .post .information p,
 .post .information time {
     display: inline-block;
 
-    font-size: 10pt;
+    margin: 0;
+
+    font-size: 8pt;
+}
+
+.post .information > p {
+    float: left;
 }
 
 .post .information > .date {
     float: right;
+}
+
+.post hr {
+    margin-top: 40px;
 }
