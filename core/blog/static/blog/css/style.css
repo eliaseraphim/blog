@@ -85,3 +85,7 @@ body {
 .post-form input {
     width: 100%;
 }
+
+.save {
+    float: right;
+}
