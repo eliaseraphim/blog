@@ -34,3 +34,21 @@ def new_post(request):
             'form': form
         }
     return render(request, 'blog/new_post.html', context)
+
+
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.date_published = timezone.now()
+            post.save()
+            return redirect('detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+        context = {
+            'form': form
+        }
+    return render(request, 'blog/edit_post.html', context)

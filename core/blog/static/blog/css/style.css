@@ -53,6 +53,10 @@ body {
     text-decoration: none;
 }
 
+.post > .actions {
+    float: right;
+}
+
 .post > div {
     padding-left: 20px;
     padding-right: 20px;
@@ -86,7 +90,8 @@ body {
 
 /* new_post.html styling */
 .post-form textarea,
-.post-form input {
+.post-form input#id_title {
+    text-align: left;
     width: 100%;
 }
 
