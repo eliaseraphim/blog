@@ -1,3 +1,66 @@
+:root {
+    --red_1: #e06c75;
+    --orange_1: #d19a66;
+    --orange_2: #e6c07b;
+    --green: #98c379;
+    --cyan: #56b6c2;
+    --purple: #c678dd;
+    --base0: #1d1f23;
+    --base1: #21252b;
+    --base2: #282c34;
+    --base3: #2c313c;
+    --base4: #333a42;
+    --base5: #404859;
+    --base6: #495162;
+    --base7: #7f848e;
+    --base8: #9da5b4;
+    --base9: #abb2bf;
+    --base10: #e6e6e6;
+}
+
 body {
+    background-color: var(--base0);
+    color: var(--base10);
     font-family: 'consolas';
+}
+
+/* base.html styling */
+.page-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px 20px 40px 20px;
+}
+
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+    color: var(--red_1);
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+/* index styling */
+.post h2,
+.post h2 a,
+.post h2 a:visited,
+.post h2 a:active {
+    color: var(--green);
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+.post > div {
+    padding-left: 20px;
+}
+
+.post .information p,
+.post .information time {
+    display: inline-block;
+
+    font-size: 10pt;
+}
+
+.post .information > .date {
+    float: right;
 }
