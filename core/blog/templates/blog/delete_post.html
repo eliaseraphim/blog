@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% if form and post %}
+        <h2>Delete Post:</h2><br>
+        {% include 'blog/post.html' %}
+        <div class="form-group">
+            <form method="POST" class="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <button type="submit" class="save btn btn-primary">Delete</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Something went wrong, no form...</p>
+    {% endif %}
+{% endblock %}

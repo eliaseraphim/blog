@@ -14,6 +14,9 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
     template_name = 'blog/index.html'
 
+    def get_queryset(self):
+        return Post.objects.filter(date_published__isnull=False).order_by('-date_published')
+
 
 class DetailView(generic.DetailView):
     model = Post
@@ -39,6 +42,15 @@ class EditPostView(generic.UpdateView):
 
     context_object_name = 'form'
     template_name = 'blog/edit_post.html'
+
+    def get_success_url(self):
+        return reverse('index')
+
+
+class DeletePostView(generic.DeleteView):
+    model = Post
+
+    template_name = 'blog/delete_post.html'
 
     def get_success_url(self):
         return reverse('index')
