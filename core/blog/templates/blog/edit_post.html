@@ -3,11 +3,13 @@
 {% block content %}
     {% if form %}
     <h2>New Post</h2>
-    <form method="POST" class="post-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-primary">Save</button>
-    </form>
+    <div class="form-group">
+        <form method="POST" class="post-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-primary">Save</button>
+        </form>
+    </div>
     {% else %}
         <p>Something went wrong, no form...</p>
     {% endif %}

@@ -90,7 +90,8 @@ body {
 
 /* new_post.html styling */
 .post-form textarea,
-.post-form input#id_title {
+.post-form input#id_title,
+.post-form input#id_date_published {
     text-align: left;
     width: 100%;
 }
