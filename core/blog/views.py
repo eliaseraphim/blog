@@ -9,7 +9,6 @@ from .models import Post
 
 class IndexView(generic.ListView):
     model = Post
-    ordering = ['-id']
 
     context_object_name = 'posts'
     template_name = 'blog/index.html'
