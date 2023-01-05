@@ -9,7 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     image = models.ImageField(blank=True, null=True, upload_to='images/%Y/%m/%d')
     date_created = models.DateTimeField(default=timezone.now)
-    date_published = models.DateTimeField(blank=True, null=True)
+    date_published = models.DateTimeField (blank=True, null=True)
 
     def __str__(self):
         return self.title
