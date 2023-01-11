@@ -1,0 +1,15 @@
+{% block content %}
+    <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
+    <div>
+        <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" style="max-height: 500px;">
+            <p class="image-location">{{ post.image.url }}</p>
+        {% endif %}
+        <div class="information">
+            <p>author: {{ post.author }}</p>
+            <time>created: {{ post.date_created }} | published: {{ post.date_published }}</time>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

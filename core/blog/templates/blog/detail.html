@@ -2,7 +2,15 @@
 
 {% block content %}
     {% if post %}
-        {%  include 'blog/post_options.html' %}
+        <article class="post">
+            {% if user.is_authenticated %}
+                <aside class="actions">
+                    <a class="btn btn-primary" href="{% url 'edit_post' pk=post.pk %}">Edit</a>
+                    <a class="btn btn-secondary" href="{% url 'delete_post' pk=post.pk %}">Delete</a>
+                </aside>
+            {% endif %}
+            {%  include 'blog/post/post.html' %}
+        </article>
     {% else %}
         <p>Something went wrong, post not found...</p>
     {% endif %}

@@ -29,7 +29,7 @@ class NewPostView(generic.CreateView):
     form_class = PostForm
 
     context_object_name = 'form'
-    template_name = 'blog/edit_post.html'
+    template_name = 'blog/post/actions/edit.html'
 
     def get_success_url(self):
         return reverse('index')
@@ -40,7 +40,16 @@ class EditPostView(generic.UpdateView):
     form_class = PostForm
 
     context_object_name = 'form'
-    template_name = 'blog/edit_post.html'
+    template_name = 'blog/post/actions/edit.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data.update({
+            'form_action': 'Edit Post',
+            'button_text': 'Edit',
+        })
+
+        return context_data
 
     def get_success_url(self):
         return reverse('index')
@@ -49,7 +58,23 @@ class EditPostView(generic.UpdateView):
 class DeletePostView(generic.DeleteView):
     model = Post
 
-    template_name = 'blog/delete_post.html'
+    context_object_name = 'post'
+    template_name = 'blog/post/actions/delete.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        This function gets the context data for the view.
+
+        We attach 'form_action' and 'button_text' for the action bar.
+        """
+        print(kwargs)
+        context_data = super().get_context_data(**kwargs)
+        context_data.update({
+            'form_action': 'Delete Post',
+            'button_text': 'Delete',
+        })
+
+        return context_data
 
     def get_success_url(self):
         return reverse('index')

@@ -2,12 +2,11 @@
 
 {% block content %}
     {% if form %}
-    <h2>New Post</h2>
     <div class="form-group">
         <form method="POST" class="post-form" enctype="multipart/form-data">
             {% csrf_token %}
+            {% include 'blog/post/actions/action-bar.html' %}
             {{ form.as_p }}
-            <button type="submit" class="save btn btn-primary">Save</button>
         </form>
     </div>
     {% else %}
