@@ -8,17 +8,9 @@ from .models import Post
 
 
 class IndexView(generic.ListView):
-    """
-    .. py:class:: IndexView
-        The view class for the index page of the blog. Inherits from :py:class:`django.views.generic.ListView`.
-
-        :cvar :py:class:`django.db.Model` model: The model for the view. Set to: :py:class:`blog.models.Post`
-        :cvar :py:class:`str` context_object_name: The name of the object returned by :py:meth:`get_context_data(self, **kwargs)`. Set to: ``'posts'``.
-        :cvar :py:class:`str` template_name: The name of the template for the view. Set to: ``'blog/index.html'``.
-    """
+    """The view class for the index page of the blog. Inherits from :py:class:`django.views.generic.ListView`."""
 
     model = Post
-
     context_object_name = 'posts'
     template_name = 'blog/index.html'
 
@@ -29,20 +21,23 @@ class IndexView(generic.ListView):
         :returns: A set of Posts ordered by :py:attr:`date_published` (descending).
         :rtype: :py:class:`QuerySet`
         """
+
         return Post.objects.filter(date_published__isnull=False).order_by('-date_published')
 
 
 class DetailView(generic.DetailView):
-    model = Post
+    """The view class for the detail page of a post. Inherits from :py:class:`django.views.generic.DetailView`."""
 
+    model = Post
     context_object_name = 'post'
     template_name = 'blog/detail.html'
 
 
 class NewPostView(generic.CreateView):
+    """The view class for creating a new post. Inherits from :py:class:`django.views.generic.CreateView`."""
+
     model = Post
     form_class = PostForm
-
     context_object_name = 'form'
     template_name = 'blog/post/actions/edit.html'
 
@@ -51,20 +46,20 @@ class NewPostView(generic.CreateView):
 
 
 class EditPostView(generic.UpdateView):
+    """The view class for editing a post. Inherits from :py:class:`django.views.generic.UpdateView`."""
+
     model = Post
     form_class = PostForm
-
     context_object_name = 'form'
     template_name = 'blog/post/actions/edit.html'
 
     def get_context_data(self, **kwargs):
         """
-        Insert the form into the context dict, with additional context for action button.
+        Insert the form into the context data, with additional context for the action button.
 
         :returns: ``context_data``
         :rtype: ``dict``
         """
-
         context_data = super().get_context_data(**kwargs)
         context_data.update({
             'form_action': 'Edit Post',
@@ -74,25 +69,26 @@ class EditPostView(generic.UpdateView):
         return context_data
 
     def get_success_url(self):
+        """Return the URL to redirect to after processing a valid form. Returns to :py:class:`blog.views.IndexView`."""
+
         return reverse('index')
 
 
 class DeletePostView(generic.DeleteView):
-    """
+    """The view class for deleting a post. Inherits from :py:class:`django.views.generic.DeleteView`."""
 
-    """
     model = Post
-
     context_object_name = 'post'
     template_name = 'blog/post/actions/delete.html'
 
     def get_context_data(self, **kwargs):
         """
-        This function gets the context data for the view.
+        Insert the form into the context data, with additional context for the action button.
 
-        We attach 'form_action' and 'button_text' for the action bar.
+        :returns: ``context_data``
+        :rtype: ``dict``
         """
-        print(kwargs)
+
         context_data = super().get_context_data(**kwargs)
         context_data.update({
             'form_action': 'Delete Post',
@@ -102,4 +98,6 @@ class DeletePostView(generic.DeleteView):
         return context_data
 
     def get_success_url(self):
+        """Return the URL to redirect to after processing a valid form. Returns to :py:class:`blog.views.IndexView`."""
+
         return reverse('index')

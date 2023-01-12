@@ -10,6 +10,8 @@ Welcome to eliaseraphim-blog's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules/forms.rst
+   modules/models.rst
    modules/views.rst
 
 
