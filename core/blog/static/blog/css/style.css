@@ -30,17 +30,13 @@ body {
     margin-bottom: 20px;
 }
 
-.navbar-brand,
-.navbar-brand:hover,
-.navbar-brand:visited {
-    color: var(--red_1);
-    font-size: 36pt;
-}
-
-.nav-link img {
-    filter: invert(67%) sepia(50%) saturate(1135%) hue-rotate(305deg) brightness(86%) contrast(106%);
-
-    min-height: 36pt;
+a.nav-link,
+a.nav-link:link,
+a.nav-link:hover,
+a.nav-link:visited {
+    color: var(--cyan);
+    font-size: 16pt;
+    text-decoration: none;
 }
 
 /* post.html styling */
