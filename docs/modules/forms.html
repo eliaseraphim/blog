@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Models" href="models.html" />
-    <link rel="prev" title="Welcome to eliaseraphim-blog’s documentation!" href="../index.html" /> 
+    <link rel="prev" title="Apps" href="apps.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,17 +40,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Apps</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Forms</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#blog.forms.get_current_time"><code class="docutils literal notranslate"><span class="pre">get_current_time()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.forms.PostForm"><code class="docutils literal notranslate"><span class="pre">PostForm</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#blog.forms.PostForm.Meta"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.model"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.model</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.fields"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.fields</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.widgets"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.widgets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.model"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.__weakref__"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.__weakref__</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.forms.PostForm.base_fields"><code class="docutils literal notranslate"><span class="pre">PostForm.base_fields</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.forms.PostForm.declared_fields"><code class="docutils literal notranslate"><span class="pre">PostForm.declared_fields</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.forms.PostForm.media"><code class="docutils literal notranslate"><span class="pre">PostForm.media</span></code></a></li>
 </ul>
 </li>
@@ -87,44 +86,55 @@
   <section id="module-blog.forms">
 <span id="forms"></span><h1>Forms<a class="headerlink" href="#module-blog.forms" title="Permalink to this heading"></a></h1>
 <p>Forms of the blog application.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="blog.forms.get_current_time">
-<span class="sig-prename descclassname"><span class="pre">blog.forms.</span></span><span class="sig-name descname"><span class="pre">get_current_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.get_current_time" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.forms.PostForm">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.forms.</span></span><span class="sig-name descname"><span class="pre">PostForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_id='id_%s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_class=&lt;class</span> <span class="pre">'django.forms.utils.ErrorList'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_suffix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_permitted=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_required_attribute=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renderer=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.PostForm" title="Permalink to this definition"></a></dt>
-<dd><dl class="py class">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
+<p>Form for editing and deleting a Post. Extends <code class="xref py py-class docutils literal notranslate"><span class="pre">django.forms.ModelForm</span></code>.</p>
+<dl class="py class">
 <dt class="sig sig-object py" id="blog.forms.PostForm.Meta">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Meta</span></span><a class="headerlink" href="#blog.forms.PostForm.Meta" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Metadata for <a class="reference internal" href="#blog.forms.PostForm" title="blog.forms.PostForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostForm</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.forms.PostForm.Meta.fields">
+<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span></em><a class="headerlink" href="#blog.forms.PostForm.Meta.fields" title="Permalink to this definition"></a></dt>
+<dd><p>Form fields.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;date_published&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.forms.PostForm.Meta.widgets">
+<span class="sig-name descname"><span class="pre">widgets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#blog.forms.PostForm.Meta.widgets" title="Permalink to this definition"></a></dt>
+<dd><p>Form widgets.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+    <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+    <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
+    <span class="s1">&#39;date_published&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateTimeInput</span><span class="p">(</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y %H:%M&#39;</span><span class="p">,</span>
+        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;datetime&#39;</span><span class="p">}</span>
+    <span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="blog.forms.PostForm.Meta.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.forms.PostForm.Meta.model" title="Permalink to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="models.html#blog.models.Post" title="blog.models.Post"><code class="xref py py-class docutils literal notranslate"><span class="pre">Post</span></code></a></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="blog.forms.PostForm.Meta.fields">
-<span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('title',</span> <span class="pre">'author',</span> <span class="pre">'text',</span> <span class="pre">'image',</span> <span class="pre">'date_published')</span></em><a class="headerlink" href="#blog.forms.PostForm.Meta.fields" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.forms.PostForm.Meta.widgets">
-<span class="sig-name descname"><span class="pre">widgets</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'author':</span> <span class="pre">&lt;django.forms.widgets.Select</span> <span class="pre">object&gt;,</span> <span class="pre">'date_published':</span> <span class="pre">&lt;django.forms.widgets.DateTimeInput</span> <span class="pre">object&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;django.forms.widgets.Textarea</span> <span class="pre">object&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;django.forms.widgets.TextInput</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#blog.forms.PostForm.Meta.widgets" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<dt class="sig sig-object py" id="blog.forms.PostForm.Meta.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#blog.forms.PostForm.Meta.__weakref__" title="Permalink to this definition"></a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.forms.PostForm.base_fields">
-<span class="sig-name descname"><span class="pre">base_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'author':</span> <span class="pre">&lt;django.forms.models.ModelChoiceField</span> <span class="pre">object&gt;,</span> <span class="pre">'date_published':</span> <span class="pre">&lt;django.forms.fields.DateTimeField</span> <span class="pre">object&gt;,</span> <span class="pre">'image':</span> <span class="pre">&lt;django.forms.fields.ImageField</span> <span class="pre">object&gt;,</span> <span class="pre">'text':</span> <span class="pre">&lt;django.forms.fields.CharField</span> <span class="pre">object&gt;,</span> <span class="pre">'title':</span> <span class="pre">&lt;django.forms.fields.CharField</span> <span class="pre">object&gt;}</span></em><a class="headerlink" href="#blog.forms.PostForm.base_fields" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.forms.PostForm.declared_fields">
-<span class="sig-name descname"><span class="pre">declared_fields</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#blog.forms.PostForm.declared_fields" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="blog.forms.PostForm.media">
@@ -140,7 +150,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to eliaseraphim-blog’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="apps.html" class="btn btn-neutral float-left" title="Apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="models.html" class="btn btn-neutral float-right" title="Models" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

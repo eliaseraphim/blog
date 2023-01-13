@@ -8,8 +8,23 @@ from .models import Post
 
 
 class IndexView(generic.ListView):
-    """The view class for the index page of the blog. Inherits from :py:class:`django.views.generic.ListView`."""
+    """
+    The view class for the index view of the blog.
 
+    .. py:attribute:: context_object_name
+        :type: str
+
+        The name of the object attached to the context data. ::
+
+            context_object_name = 'posts'
+
+    .. py:attribute:: template_name
+        :type: str
+
+        The name of the template used for the view. ::
+
+            template_name = 'blog/index.html'
+    """
     model = Post
     context_object_name = 'posts'
     template_name = 'blog/index.html'
@@ -18,36 +33,53 @@ class IndexView(generic.ListView):
         """
         Return a :py:class:`QuerySet` of posts.
 
-        :returns: A set of Posts ordered by :py:attr:`date_published` (descending).
+        :returns: A set of Posts ordered by :py:attr:`blog.models.Post.date_published` (descending).
         :rtype: :py:class:`QuerySet`
         """
-
         return Post.objects.filter(date_published__isnull=False).order_by('-date_published')
 
 
 class DetailView(generic.DetailView):
-    """The view class for the detail page of a post. Inherits from :py:class:`django.views.generic.DetailView`."""
+    """
+    The view class for the detail view of a post.
 
+    .. py:attribute:: context_object_name
+        :type: str
+
+        The name of the object attached to the context data. ::
+
+            context_object_name = 'posts'
+
+    .. py:attribute:: template_name
+        :type: str
+
+        The name of the template used for the view. ::
+
+            template_name = 'blog/detail.html'
+    """
     model = Post
     context_object_name = 'post'
     template_name = 'blog/detail.html'
 
 
 class NewPostView(generic.CreateView):
-    """The view class for creating a new post. Inherits from :py:class:`django.views.generic.CreateView`."""
+    """
+    The view class for the create view of a post.
 
-    model = Post
-    form_class = PostForm
-    context_object_name = 'form'
-    template_name = 'blog/post/actions/edit.html'
+    .. py:attribute:: context_object_name
+        :type: str
 
-    def get_success_url(self):
-        return reverse('index')
+        The name of the object attached to the context data. ::
 
+            context_object_name = 'form'
 
-class EditPostView(generic.UpdateView):
-    """The view class for editing a post. Inherits from :py:class:`django.views.generic.UpdateView`."""
+    .. py:attribute:: template_name
+        :type: str
 
+        The name of the template used for the view. ::
+
+            template_name = 'blog/post/actions/edit.html'
+    """
     model = Post
     form_class = PostForm
     context_object_name = 'form'
@@ -58,7 +90,50 @@ class EditPostView(generic.UpdateView):
         Insert the form into the context data, with additional context for the action button.
 
         :returns: ``context_data``
-        :rtype: ``dict``
+        :rtype: :py:class:`dict`
+        """
+        context_data = super().get_context_data(**kwargs)
+        context_data.update({
+            'form_action': 'Save Post',
+            'button_text': 'Save',
+        })
+
+        return context_data
+
+    def get_success_url(self):
+        """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
+        return reverse('index')
+
+
+class EditPostView(generic.UpdateView):
+    """
+    The view class for the update view of a post.
+
+    .. py:attribute:: context_object_name
+        :type: str
+
+        The name of the object attached to the context data. ::
+
+            context_object_name = 'form'
+
+    .. py:attribute:: template_name
+        :type: str
+
+        The name of the template used for the view. ::
+
+            template_name = 'blog/post/actions/edit.html'
+    """
+    model = Post
+    form_class = PostForm
+    context_object_name = 'form'
+    template_name = 'blog/post/actions/edit.html'
+
+    def get_context_data(self, **kwargs):
+        """
+        Insert the form into the context data, with additional context for the action button.
+
+        :returns: ``context_data``
+        :rtype: :py:class:`dict`
         """
         context_data = super().get_context_data(**kwargs)
         context_data.update({
@@ -69,14 +144,28 @@ class EditPostView(generic.UpdateView):
         return context_data
 
     def get_success_url(self):
-        """Return the URL to redirect to after processing a valid form. Returns to :py:class:`blog.views.IndexView`."""
-
+        """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
         return reverse('index')
 
 
 class DeletePostView(generic.DeleteView):
-    """The view class for deleting a post. Inherits from :py:class:`django.views.generic.DeleteView`."""
+    """
+    The view class for the delete view of a post.
 
+    .. py:attribute:: context_object_name
+        :type: str
+
+        The name of the object attached to the context data. ::
+
+            context_object_name = 'form'
+
+    .. py:attribute:: template_name
+        :type: str
+
+        The name of the template used for the view. ::
+
+            template_name = 'blog/post/actions/delete.html'
+    """
     model = Post
     context_object_name = 'post'
     template_name = 'blog/post/actions/delete.html'
@@ -86,9 +175,8 @@ class DeletePostView(generic.DeleteView):
         Insert the form into the context data, with additional context for the action button.
 
         :returns: ``context_data``
-        :rtype: ``dict``
+        :rtype: :py:class:`dict`
         """
-
         context_data = super().get_context_data(**kwargs)
         context_data.update({
             'form_action': 'Delete Post',
@@ -98,6 +186,5 @@ class DeletePostView(generic.DeleteView):
         return context_data
 
     def get_success_url(self):
-        """Return the URL to redirect to after processing a valid form. Returns to :py:class:`blog.views.IndexView`."""
-
+        """Return the URL to redirect to after processing a valid form. Returns to :py:class:`IndexView`."""
         return reverse('index')

@@ -40,6 +40,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#blog.models.Post"><code class="docutils literal notranslate"><span class="pre">Post</span></code></a><ul>
@@ -49,13 +50,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.image"><code class="docutils literal notranslate"><span class="pre">Post.image</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.date_created"><code class="docutils literal notranslate"><span class="pre">Post.date_created</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.date_published"><code class="docutils literal notranslate"><span class="pre">Post.date_published</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.__str__"><code class="docutils literal notranslate"><span class="pre">Post.__str__()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Post.DoesNotExist</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Post.MultipleObjectsReturned</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.author_id"><code class="docutils literal notranslate"><span class="pre">Post.author_id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.get_next_by_date_created"><code class="docutils literal notranslate"><span class="pre">Post.get_next_by_date_created()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.get_previous_by_date_created"><code class="docutils literal notranslate"><span class="pre">Post.get_previous_by_date_created()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.id"><code class="docutils literal notranslate"><span class="pre">Post.id</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.models.Post.objects"><code class="docutils literal notranslate"><span class="pre">Post.objects</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -89,94 +86,91 @@
              
   <section id="module-blog.models">
 <span id="models"></span><h1>Models<a class="headerlink" href="#module-blog.models" title="Permalink to this heading"></a></h1>
-<p>Models of the blog application.</p>
+<p>Models for the blog application.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.models.Post">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.models.</span></span><span class="sig-name descname"><span class="pre">Post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_created</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_published</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.models.</span></span><span class="sig-name descname"><span class="pre">Post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Model for a blog post.</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.author">
 <span class="sig-name descname"><span class="pre">author</span></span><a class="headerlink" href="#blog.models.Post.author" title="Permalink to this definition"></a></dt>
-<dd><p>Accessor to the related object on the forward side of a many-to-one or
-one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
-<p>In the example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+<dd><p>The author of the post, defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.title">
 <span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#blog.models.Post.title" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dd><p>The title of the post, defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.text">
 <span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#blog.models.Post.text" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dd><p>The plaintext of the post, defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.image">
 <span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#blog.models.Post.image" title="Permalink to this definition"></a></dt>
-<dd><p>Just like the FileDescriptor, but for ImageFields. The only difference is
-assigning the width/height to the width_field/height_field, if appropriate.</p>
+<dd><p>The image associated with the post defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ImageField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="n">true</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">upload_to</span><span class="o">=</span><span class="s1">&#39;images/%Y/%m/</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.date_created">
 <span class="sig-name descname"><span class="pre">date_created</span></span><a class="headerlink" href="#blog.models.Post.date_created" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dd><p>The date and time the post was created, defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.models.Post.date_published">
 <span class="sig-name descname"><span class="pre">date_published</span></span><a class="headerlink" href="#blog.models.Post.date_published" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dd><p>The date and time the post was published, defaults to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">django</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">blank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="blog.models.Post.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.__str__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the <code class="docutils literal notranslate"><span class="pre">str</span></code> version of the Post object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#blog.models.Post.title" title="blog.models.Post.title"><code class="xref py py-attr docutils literal notranslate"><span class="pre">title</span></code></a></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="blog.models.Post.DoesNotExist">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#blog.models.Post.DoesNotExist" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></p>
+</dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="blog.models.Post.MultipleObjectsReturned">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#blog.models.Post.MultipleObjectsReturned" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.models.Post.author_id">
-<span class="sig-name descname"><span class="pre">author_id</span></span><a class="headerlink" href="#blog.models.Post.author_id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="blog.models.Post.get_next_by_date_created">
-<span class="sig-name descname"><span class="pre">get_next_by_date_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_created&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_next_by_date_created" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="blog.models.Post.get_previous_by_date_created">
-<span class="sig-name descname"><span class="pre">get_previous_by_date_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_created&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.models.Post.get_previous_by_date_created" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.models.Post.id">
-<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#blog.models.Post.id" title="Permalink to this definition"></a></dt>
-<dd><p>A wrapper for a deferred-loading field. When the value is read from this
-object the first time, the query is executed.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.models.Post.objects">
-<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#blog.models.Post.objects" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

@@ -4,7 +4,8 @@ Forms
 
 .. automodule:: blog.forms
     :members:
-    :undoc-members:
+    :special-members:
+    :show-inheritance:
 
     Forms of the blog application.
 

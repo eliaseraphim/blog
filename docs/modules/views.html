@@ -39,43 +39,45 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apps.html">Apps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Views</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#blog.views.IndexView"><code class="docutils literal notranslate"><span class="pre">IndexView</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.IndexView.model"><code class="docutils literal notranslate"><span class="pre">IndexView.model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.IndexView.context_object_name"><code class="docutils literal notranslate"><span class="pre">IndexView.context_object_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.IndexView.template_name"><code class="docutils literal notranslate"><span class="pre">IndexView.template_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.IndexView.model"><code class="docutils literal notranslate"><span class="pre">IndexView.model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.IndexView.get_queryset"><code class="docutils literal notranslate"><span class="pre">IndexView.get_queryset()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.views.DetailView"><code class="docutils literal notranslate"><span class="pre">DetailView</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.DetailView.model"><code class="docutils literal notranslate"><span class="pre">DetailView.model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DetailView.context_object_name"><code class="docutils literal notranslate"><span class="pre">DetailView.context_object_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DetailView.template_name"><code class="docutils literal notranslate"><span class="pre">DetailView.template_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.DetailView.model"><code class="docutils literal notranslate"><span class="pre">DetailView.model</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.views.NewPostView"><code class="docutils literal notranslate"><span class="pre">NewPostView</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.model"><code class="docutils literal notranslate"><span class="pre">NewPostView.model</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.form_class"><code class="docutils literal notranslate"><span class="pre">NewPostView.form_class</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.context_object_name"><code class="docutils literal notranslate"><span class="pre">NewPostView.context_object_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.template_name"><code class="docutils literal notranslate"><span class="pre">NewPostView.template_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.model"><code class="docutils literal notranslate"><span class="pre">NewPostView.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.form_class"><code class="docutils literal notranslate"><span class="pre">NewPostView.form_class</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.get_context_data"><code class="docutils literal notranslate"><span class="pre">NewPostView.get_context_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.NewPostView.get_success_url"><code class="docutils literal notranslate"><span class="pre">NewPostView.get_success_url()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.views.EditPostView"><code class="docutils literal notranslate"><span class="pre">EditPostView</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.model"><code class="docutils literal notranslate"><span class="pre">EditPostView.model</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.form_class"><code class="docutils literal notranslate"><span class="pre">EditPostView.form_class</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.context_object_name"><code class="docutils literal notranslate"><span class="pre">EditPostView.context_object_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.template_name"><code class="docutils literal notranslate"><span class="pre">EditPostView.template_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.model"><code class="docutils literal notranslate"><span class="pre">EditPostView.model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.form_class"><code class="docutils literal notranslate"><span class="pre">EditPostView.form_class</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.get_context_data"><code class="docutils literal notranslate"><span class="pre">EditPostView.get_context_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.EditPostView.get_success_url"><code class="docutils literal notranslate"><span class="pre">EditPostView.get_success_url()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.views.DeletePostView"><code class="docutils literal notranslate"><span class="pre">DeletePostView</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.model"><code class="docutils literal notranslate"><span class="pre">DeletePostView.model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.context_object_name"><code class="docutils literal notranslate"><span class="pre">DeletePostView.context_object_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.template_name"><code class="docutils literal notranslate"><span class="pre">DeletePostView.template_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.model"><code class="docutils literal notranslate"><span class="pre">DeletePostView.model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.get_context_data"><code class="docutils literal notranslate"><span class="pre">DeletePostView.get_context_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#blog.views.DeletePostView.get_success_url"><code class="docutils literal notranslate"><span class="pre">DeletePostView.get_success_url()</span></code></a></li>
 </ul>
@@ -114,22 +116,31 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.views.IndexView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.views.</span></span><span class="sig-name descname"><span class="pre">IndexView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.IndexView" title="Permalink to this definition"></a></dt>
-<dd><p>The view class for the index page of the blog. Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.ListView</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListView</span></code></p>
+<p>The view class for the index view of the blog.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.IndexView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.IndexView.context_object_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object attached to the context data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;posts&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.IndexView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.IndexView.template_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the template used for the view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/index.html&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.views.IndexView.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.views.IndexView.model" title="Permalink to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="models.html#blog.models.Post" title="blog.models.Post"><code class="xref py py-class docutils literal notranslate"><span class="pre">Post</span></code></a></p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.IndexView.context_object_name">
-<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'posts'</span></em><a class="headerlink" href="#blog.views.IndexView.context_object_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.IndexView.template_name">
-<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'blog/index.html'</span></em><a class="headerlink" href="#blog.views.IndexView.template_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.IndexView.get_queryset">
@@ -137,7 +148,7 @@
 <dd><p>Return a <code class="xref py py-class docutils literal notranslate"><span class="pre">QuerySet</span></code> of posts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A set of Posts ordered by <code class="xref py py-attr docutils literal notranslate"><span class="pre">date_published</span></code> (descending).</p>
+<dd class="field-odd"><p>A set of Posts ordered by <a class="reference internal" href="models.html#blog.models.Post.date_published" title="blog.models.Post.date_published"><code class="xref py py-attr docutils literal notranslate"><span class="pre">blog.models.Post.date_published</span></code></a> (descending).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">QuerySet</span></code></p>
@@ -150,29 +161,57 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.views.DetailView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.views.</span></span><span class="sig-name descname"><span class="pre">DetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.DetailView" title="Permalink to this definition"></a></dt>
-<dd><p>The view class for the detail page of a post. Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.DetailView</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></p>
+<p>The view class for the detail view of a post.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.DetailView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.DetailView.context_object_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object attached to the context data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;posts&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.DetailView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.DetailView.template_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the template used for the view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/detail.html&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.views.DetailView.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.views.DetailView.model" title="Permalink to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="models.html#blog.models.Post" title="blog.models.Post"><code class="xref py py-class docutils literal notranslate"><span class="pre">Post</span></code></a></p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.DetailView.context_object_name">
-<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'post'</span></em><a class="headerlink" href="#blog.views.DetailView.context_object_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.DetailView.template_name">
-<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'blog/detail.html'</span></em><a class="headerlink" href="#blog.views.DetailView.template_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.views.NewPostView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.views.</span></span><span class="sig-name descname"><span class="pre">NewPostView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.NewPostView" title="Permalink to this definition"></a></dt>
-<dd><p>The view class for creating a new post. Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.CreateView</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></p>
+<p>The view class for the create view of a post.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.NewPostView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.NewPostView.context_object_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object attached to the context data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.NewPostView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.NewPostView.template_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the template used for the view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/post/actions/edit.html&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.views.NewPostView.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.views.NewPostView.model" title="Permalink to this definition"></a></dt>
@@ -185,20 +224,24 @@
 <dd><p>alias of <a class="reference internal" href="forms.html#blog.forms.PostForm" title="blog.forms.PostForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostForm</span></code></a></p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.NewPostView.context_object_name">
-<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'form'</span></em><a class="headerlink" href="#blog.views.NewPostView.context_object_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.NewPostView.template_name">
-<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'blog/post/actions/edit.html'</span></em><a class="headerlink" href="#blog.views.NewPostView.template_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="blog.views.NewPostView.get_context_data">
+<span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.NewPostView.get_context_data" title="Permalink to this definition"></a></dt>
+<dd><p>Insert the form into the context data, with additional context for the action button.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">context_data</span></code></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.NewPostView.get_success_url">
 <span class="sig-name descname"><span class="pre">get_success_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.NewPostView.get_success_url" title="Permalink to this definition"></a></dt>
-<dd><p>Return the URL to redirect to after processing a valid form.</p>
+<dd><p>Return the URL to redirect to after processing a valid form. Returns to py:class:<cite>IndexView</cite>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -206,7 +249,26 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.views.EditPostView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.views.</span></span><span class="sig-name descname"><span class="pre">EditPostView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.EditPostView" title="Permalink to this definition"></a></dt>
-<dd><p>The view class for editing a post. Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.UpdateView</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></p>
+<p>The view class for the update view of a post.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.EditPostView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.EditPostView.context_object_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object attached to the context data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.EditPostView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.EditPostView.template_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the template used for the view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/post/actions/edit.html&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.views.EditPostView.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.views.EditPostView.model" title="Permalink to this definition"></a></dt>
@@ -219,16 +281,6 @@
 <dd><p>alias of <a class="reference internal" href="forms.html#blog.forms.PostForm" title="blog.forms.PostForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">PostForm</span></code></a></p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.EditPostView.context_object_name">
-<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'form'</span></em><a class="headerlink" href="#blog.views.EditPostView.context_object_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.EditPostView.template_name">
-<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'blog/post/actions/edit.html'</span></em><a class="headerlink" href="#blog.views.EditPostView.template_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.EditPostView.get_context_data">
 <span class="sig-name descname"><span class="pre">get_context_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.EditPostView.get_context_data" title="Permalink to this definition"></a></dt>
@@ -238,7 +290,7 @@
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">context_data</span></code></p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -246,7 +298,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.EditPostView.get_success_url">
 <span class="sig-name descname"><span class="pre">get_success_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.EditPostView.get_success_url" title="Permalink to this definition"></a></dt>
-<dd><p>Return the URL to redirect to after processing a valid form. Returns to <a class="reference internal" href="#blog.views.IndexView" title="blog.views.IndexView"><code class="xref py py-class docutils literal notranslate"><span class="pre">blog.views.IndexView</span></code></a>.</p>
+<dd><p>Return the URL to redirect to after processing a valid form. Returns to py:class:<cite>IndexView</cite>.</p>
 </dd></dl>
 
 </dd></dl>
@@ -254,22 +306,31 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="blog.views.DeletePostView">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.views.</span></span><span class="sig-name descname"><span class="pre">DeletePostView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.DeletePostView" title="Permalink to this definition"></a></dt>
-<dd><p>The view class for deleting a post. Inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">django.views.generic.DeleteView</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteView</span></code></p>
+<p>The view class for the delete view of a post.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.DeletePostView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.DeletePostView.context_object_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the object attached to the context data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">context_object_name</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.views.DeletePostView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#blog.views.DeletePostView.template_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the template used for the view.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;blog/post/actions/delete.html&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="blog.views.DeletePostView.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#blog.views.DeletePostView.model" title="Permalink to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="models.html#blog.models.Post" title="blog.models.Post"><code class="xref py py-class docutils literal notranslate"><span class="pre">Post</span></code></a></p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.DeletePostView.context_object_name">
-<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'post'</span></em><a class="headerlink" href="#blog.views.DeletePostView.context_object_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="blog.views.DeletePostView.template_name">
-<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'blog/post/actions/delete.html'</span></em><a class="headerlink" href="#blog.views.DeletePostView.template_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.DeletePostView.get_context_data">
@@ -280,7 +341,7 @@
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">context_data</span></code></p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -288,7 +349,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="blog.views.DeletePostView.get_success_url">
 <span class="sig-name descname"><span class="pre">get_success_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blog.views.DeletePostView.get_success_url" title="Permalink to this definition"></a></dt>
-<dd><p>Return the URL to redirect to after processing a valid form. Returns to <a class="reference internal" href="#blog.views.IndexView" title="blog.views.IndexView"><code class="xref py py-class docutils literal notranslate"><span class="pre">blog.views.IndexView</span></code></a>.</p>
+<dd><p>Return the URL to redirect to after processing a valid form. Returns to <a class="reference internal" href="#blog.views.IndexView" title="blog.views.IndexView"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexView</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>

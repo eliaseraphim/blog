@@ -4,7 +4,8 @@ Models
 
 .. automodule:: blog.models
     :members:
-    :undoc-members:
+    :special-members:
+    :show-inheritance:
 
-    Models of the blog application.
+    Models for the blog application.
 
