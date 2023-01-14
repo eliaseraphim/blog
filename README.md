@@ -38,28 +38,30 @@ Online Documentation is available here: https://eliaseraphim.github.io/blog/
 It is recommended that you create a virtual environement, though not necessary. Learn more about virtual environments, 
 and how to use them here: https://realpython.com/python-virtual-environments-a-primer/
 
-```
-$ git clone https://github.com/eliaseraphim/blog.git
-$ mkvirtualenv -a <path_to_blog> blog
-$ workon blog
-$ pip install -r requirements.txt
-$ cd core
-$ python manage.py makemigrations
-$ python manage.py migrate
+```commandline
+git clone https://github.com/eliaseraphim/blog.git
+mkvirtualenv blog [-a PATH/TO/blog]
+workon blog
+pip install -r requirements.txt
+cd core
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 ## Run
 
-```
-$ cd core
-$ python manage.py runserver 8000
+```commandline
+workon blog
+cd core
+python manage.py runserver 8000
 ```
 
 ## Build Documentation
 
 Documentation is built in the `/core/docs`. The `/docs` folder in root is for published documentation.
 
-```
-$ cd core/docs/
-$ make html
+```commandline
+workon blog
+cd core/docs/
+make html
 ```
