@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "type": "python",
+            "name": "blog",
+            "arguments": ["core/manage.py", "runserver"],
+        },
+    ]
+}
