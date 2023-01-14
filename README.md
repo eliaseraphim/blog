@@ -17,7 +17,7 @@ Online Documentation | https://eliaseraphim.github.io/blog/
 ## Requirements
 
 | Package              | Version  | PyPI                                           | Documentation                                          | Repository                                       | Purpose              | Required |
-|----------------------|----------|------------------------------------------------|--------------------------------------------------------|--------------------------------------------------|----------------------|----------|
+|:---------------------|:---------|:-----------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------|:---------------------|:---------|
 | Django               | 4.1.5    | https://pypi.org/project/Django/               | https://docs.djangoproject.com/en/4.1/                 | https://github.com/django/django                 | Backend Software     | Yes      |
 | Pillow               | 9.4.0    | https://pypi.org/project/Pillow/               | https://pillow.readthedocs.io/en/stable/               | https://pypi.org/project/Pillow/                 | Image Processing     | Yes      |
 | django-cleanup       | 6.0.0    | https://pypi.org/project/django-cleanup/       | See: PyPI or Repository                                | https://github.com/un1t/django-cleanup           | Backend Software     | Yes      |
