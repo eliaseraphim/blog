@@ -2,8 +2,26 @@
 
 {% block content %}
     <div class="row text-center justify-content-center">
-        <div class="col-6" style="background-color: #0a53be;">
-            <p>hello!</p>
+        <div class="col-6">
+            {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Your account does not have acces to this page. To proceed, please login with an account that has access.</p>
+                {% else %}
+                    <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+
+            <div class="form-group">
+                <form class="post-form" method="post" action="{% url 'login' %}">
+                    {{ form.as_p }}
+                    <input type="submit" value="Login">
+                    <input type="hidden" name="next" value="{{ next }}">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

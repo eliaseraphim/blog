@@ -3,7 +3,7 @@
 {% block content %}
     {% if form %}
     <div class="form-group">
-        <form method="POST" class="post-form" enctype="multipart/form-data">
+        <form method="post" class="post-form" enctype="multipart/form-data">
             {% csrf_token %}
             {% include 'blog/post/actions/action-bar.html' %}
             {{ form.as_p }}
