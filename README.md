@@ -3,7 +3,7 @@
 ## Developers
 
 | Name       | Email                 |
-|------------|-----------------------|
+|:-----------|:----------------------|
 | Elia Deppe | elia.deppe7@gmail.com |
 
 ## Description
