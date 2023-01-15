@@ -29,6 +29,15 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
     template_name = 'blog/index.html'
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(object_list=object_list, **kwargs)
+        context_data.update({
+            'view_name': 'IndexView',
+        })
+
+        return context_data
+
+
     def get_queryset(self):
         """
         Return a :py:class:`QuerySet` of posts.

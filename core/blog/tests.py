@@ -226,9 +226,6 @@ class BlogIndexViewTests(BlogViewTests):
         for post in self.posts:
             post.save()
 
-        self.user_client = Client()
-        self.user_client.force_login(self.user)
-
     def test_index_view(self):
         """Test that the index url returns an :py:class:`blog.views.IndexView`."""
         response = self.anonymous_client.get('')
@@ -247,6 +244,23 @@ class BlogIndexViewTests(BlogViewTests):
         self.assertEqual(len(posts), len(response_posts))
         for post, response_post in zip(posts, response_posts):
             self.assertEqual(post, response_post)
+
+    def test_index_view_links(self):
+        """Test that py:class:`blog.views.IndexView` returns links to the posts detail view."""
+        response = self.anonymous_client.get('')
+        response_posts = response.context_data['posts']
+        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
+
+        for post, response_post in zip(posts, response_posts):
+            url = reverse('detail', kwargs={'pk': post.pk})
+            post_anchor = bytes(f'<h2><a href="{url}">{post.title}</a></h2>', encoding='utf-8')
+
+            url = reverse('detail', kwargs={'pk': response_post.pk})
+            response_post_anchor = bytes(f'<h2><a href="{url}">{response_post.title}</a></h2>', encoding='utf-8')
+
+            self.assertEqual(post_anchor, response_post_anchor)
+            self.assertIn(post_anchor, response.content)
+
 
 class BlogDetailViewTests(BlogViewTests):
     """Test the :py:class:`blog.views.DetailView` class view."""
@@ -287,6 +301,20 @@ class BlogDetailViewTests(BlogViewTests):
 
         self.assertEqual(post, response_post)
 
+    def test_detail_view_title_header(self):
+        """Test that detail view title header does not contain an anchor."""
+        post = Post.objects.get(title__exact='Post 1')
+
+        url = reverse('detail', kwargs={'pk': post.pk})
+        response = self.anonymous_client.get(url)
+        response_post = response.context_data['post']
+
+        post_header = bytes(f'<h2>{post.title}</h2>', encoding='utf-8')
+        response_post_header = bytes(f'<h2>{response_post.title}</h2>', encoding='utf-8')
+
+        self.assertEqual(post_header, response_post_header)
+        self.assertIn(post_header, response.content)
+
     def test_detail_view_action_buttons_anonymous_user(self):
         """
         Test that a response from the detail view for a post does not contain action buttons for an anonymous user.
@@ -298,11 +326,11 @@ class BlogDetailViewTests(BlogViewTests):
 
         edit_url = reverse('edit_post', kwargs={'pk': post.pk})
         delete_url = reverse('delete_post', kwargs={'pk': post.pk})
-        edit_button_content = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
-        delete_button_content = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
+        edit_button_anchor = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
+        delete_button_anchor = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
 
-        self.assertNotIn(edit_button_content, response.content)
-        self.assertNotIn(delete_button_content, response.content)
+        self.assertNotIn(edit_button_anchor, response.content)
+        self.assertNotIn(delete_button_anchor, response.content)
 
     def test_detail_view_action_buttons_user(self):
         """Test that a response from the detail view for a post does contain action buttons for a user."""
@@ -313,11 +341,21 @@ class BlogDetailViewTests(BlogViewTests):
 
         edit_url = reverse('edit_post', kwargs={'pk': post.pk})
         delete_url = reverse('delete_post', kwargs={'pk': post.pk})
-        edit_button_content = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
-        delete_button_content = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
+        edit_button_anchor = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
+        delete_button_anchor = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
 
-        self.assertIn(edit_button_content, response.content)
-        self.assertIn(delete_button_content, response.content)
+        self.assertIn(edit_button_anchor, response.content)
+        self.assertIn(delete_button_anchor, response.content)
+
+
+class BlogNewPostView(BlogViewTests):
+    def setUp(self):
+        self.user.save()
+        self.user_client = Client()
+        self.user_client.force_login(self.user)
+
+    def test_new_post_view(self):
+        pass
 
 
 def tearDownModule():
