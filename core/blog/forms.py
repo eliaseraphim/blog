@@ -32,7 +32,7 @@ class DateTimeWidget(forms.MultiWidget):
         time_input_attrs = {**attrs, 'type': 'time'} if attrs else {'type': 'time'}
         widgets = [
             forms.DateInput(attrs=date_input_attrs, format='%m/%d/%Y'),
-            forms.TimeInput(attrs=attrs, format='%H:%M'),
+            forms.TimeInput(attrs=time_input_attrs, format='%H:%M'),
         ]
 
         super().__init__(widgets, attrs)
@@ -106,5 +106,5 @@ class PostForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control'}),
-            'date_published': DateTimeWidget(attrs={'class': 'form-control'}),
+            'date_published': DateTimeWidget(attrs={'class': 'form-control mx-2'}),
         }

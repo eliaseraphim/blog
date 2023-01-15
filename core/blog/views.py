@@ -37,7 +37,6 @@ class IndexView(generic.ListView):
 
         return context_data
 
-
     def get_queryset(self):
         """
         Return a :py:class:`QuerySet` of posts.
