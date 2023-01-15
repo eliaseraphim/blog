@@ -14,6 +14,7 @@ Welcome to eliaseraphim-blog's documentation!
    modules/forms.rst
    modules/models.rst
    modules/views.rst
+   modules/tests.rst
 
 
 

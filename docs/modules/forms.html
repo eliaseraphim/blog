@@ -42,6 +42,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="apps.html">Apps</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#blog.forms.DateTimeWidget"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#blog.forms.DateTimeWidget.widgets"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget.widgets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.forms.DateTimeWidget.__init__"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.forms.DateTimeWidget.decompress"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget.decompress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.forms.DateTimeWidget.value_from_datadict"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget.value_from_datadict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#blog.forms.DateTimeWidget.media"><code class="docutils literal notranslate"><span class="pre">DateTimeWidget.media</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#blog.forms.PostForm"><code class="docutils literal notranslate"><span class="pre">PostForm</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#blog.forms.PostForm.Meta"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#blog.forms.PostForm.Meta.fields"><code class="docutils literal notranslate"><span class="pre">PostForm.Meta.fields</span></code></a></li>
@@ -57,6 +65,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests</a></li>
 </ul>
 
         </div>
@@ -87,6 +96,76 @@
 <span id="forms"></span><h1>Forms<a class="headerlink" href="#module-blog.forms" title="Permalink to this heading"></a></h1>
 <p>Forms of the blog application.</p>
 <dl class="py class">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.forms.</span></span><span class="sig-name descname"><span class="pre">DateTimeWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.DateTimeWidget" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiWidget</span></code></p>
+<p>Widget for <a class="reference internal" href="models.html#blog.models.Post.date_published" title="blog.models.Post.date_published"><code class="xref py py-attr docutils literal notranslate"><span class="pre">blog.models.Post.date_published</span></code></a> form field in py:class:<cite>PostForm</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget.widgets">
+<span class="sig-name descname"><span class="pre">widgets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#blog.forms.DateTimeWidget.widgets" title="Permalink to this definition"></a></dt>
+<dd><p>Widgets for the <code class="docutils literal notranslate"><span class="pre">django.forms.MultiWidget</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widgets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">forms</span><span class="o">.</span><span class="n">DateInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="n">date_input_attrs</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y&#39;</span><span class="p">),</span>
+    <span class="n">forms</span><span class="o">.</span><span class="n">TimeInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.DateTimeWidget.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor for py:class:<cite>DateTimeWidget</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attrs</strong> (<code class="docutils literal notranslate"><span class="pre">dict</span></code> or <code class="docutils literal notranslate"><span class="pre">None</span></code>) – Optional parameter. The HTML attributes for the form fields.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget.decompress">
+<span class="sig-name descname"><span class="pre">decompress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.DateTimeWidget.decompress" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> value from the <a class="reference internal" href="models.html#blog.models.Post.date_published" title="blog.models.Post.date_published"><code class="xref py py-attr docutils literal notranslate"><span class="pre">blog.models.Post.date_published</span></code></a> into a date and time object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> if editing/deleting a post. <code class="docutils literal notranslate"><span class="pre">None</span></code> if creating a new post.) – <a class="reference internal" href="models.html#blog.models.Post.date_published" title="blog.models.Post.date_published"><code class="xref py py-attr docutils literal notranslate"><span class="pre">blog.models.Post.date_published</span></code></a></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list containing the date and time objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget.value_from_datadict">
+<span class="sig-name descname"><span class="pre">value_from_datadict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.DateTimeWidget.value_from_datadict" title="Permalink to this definition"></a></dt>
+<dd><p>Converts the <code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">time</span></code> fields into a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> string.</p>
+<p>TODO: Remove automatic setting for time once a better setup is created for selecting the time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<code class="docutils literal notranslate"><span class="pre">django.http.request.QueryDict</span></code>) – The data from the form POST request.</p></li>
+<li><p><strong>files</strong> (<code class="docutils literal notranslate"><span class="pre">django.utils.datastructures.MultiValueDict</span></code>) – A dictionary of files. Should be empty.</p></li>
+<li><p><strong>name</strong> (<code class="docutils literal notranslate"><span class="pre">str</span></code>) – The name of the field.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="blog.forms.DateTimeWidget.media">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">media</span></span><a class="headerlink" href="#blog.forms.DateTimeWidget.media" title="Permalink to this definition"></a></dt>
+<dd><p>Media for a multiwidget is the combination of all media of the
+subwidgets.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="blog.forms.PostForm">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">blog.forms.</span></span><span class="sig-name descname"><span class="pre">PostForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_id='id_%s'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_class=&lt;class</span> <span class="pre">'django.forms.utils.ErrorList'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_suffix=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_permitted=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_required_attribute=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">renderer=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#blog.forms.PostForm" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelForm</span></code></p>
@@ -109,14 +188,13 @@
 <dt class="sig sig-object py" id="blog.forms.PostForm.Meta.widgets">
 <span class="sig-name descname"><span class="pre">widgets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#blog.forms.PostForm.Meta.widgets" title="Permalink to this definition"></a></dt>
 <dd><p>Form widgets.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Post</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;date_published&#39;</span><span class="p">)</span>
+<span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
     <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
     <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
-    <span class="s1">&#39;date_published&#39;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">DateTimeInput</span><span class="p">(</span>
-        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">/%Y %H:%M&#39;</span><span class="p">,</span>
-        <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;datetime&#39;</span><span class="p">}</span>
-    <span class="p">),</span>
+    <span class="s1">&#39;date_published&#39;</span><span class="p">:</span> <span class="n">DateTimeWidget</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">}),</span>
 <span class="p">}</span>
 </pre></div>
 </div>

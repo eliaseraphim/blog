@@ -41,6 +41,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules/forms.html">Forms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/models.html">Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules/views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/tests.html">Tests</a></li>
 </ul>
 
         </div>
@@ -82,17 +83,22 @@
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#blog.models.Post.__str__">__str__() (blog.models.Post method)</a>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget.__init__">__init__() (blog.forms.DateTimeWidget method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/models.html#blog.models.Post.__str__">__str__() (blog.models.Post method)</a>
+</li>
       <li><a href="modules/forms.html#blog.forms.PostForm.Meta.__weakref__">__weakref__ (blog.forms.PostForm.Meta attribute)</a>
 </li>
   </ul></td>
@@ -100,6 +106,10 @@
 
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.BlogViewTests.anonymous_client">anonymous_client (blog.tests.BlogViewTests attribute)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/models.html#blog.models.Post.author">author (blog.models.Post attribute)</a>
 </li>
@@ -123,8 +133,6 @@
         <li><a href="modules/forms.html#module-blog.forms">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     blog.models
 
@@ -133,6 +141,15 @@
 </li>
       </ul></li>
       <li>
+    blog.tests
+
+      <ul>
+        <li><a href="modules/tests.html#module-blog.tests">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     blog.views
 
       <ul>
@@ -140,6 +157,14 @@
 </li>
       </ul></li>
       <li><a href="modules/apps.html#blog.apps.BlogConfig">BlogConfig (class in blog.apps)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests">BlogDetailViewTests (class in blog.tests)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogIndexViewTests">BlogIndexViewTests (class in blog.tests)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests">BlogPostModelTests (class in blog.tests)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogViewTests">BlogViewTests (class in blog.tests)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -169,8 +194,12 @@
 </li>
       <li><a href="modules/models.html#blog.models.Post.date_published">date_published (blog.models.Post attribute)</a>
 </li>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget">DateTimeWidget (class in blog.forms)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget.decompress">decompress() (blog.forms.DateTimeWidget method)</a>
+</li>
       <li><a href="modules/apps.html#blog.apps.BlogConfig.default_auto_field">default_auto_field (blog.apps.BlogConfig attribute)</a>
 </li>
       <li><a href="modules/views.html#blog.views.DeletePostView">DeletePostView (class in blog.views)</a>
@@ -245,8 +274,12 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/forms.html#blog.forms.PostForm.media">media (blog.forms.PostForm property)</a>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget.media">media (blog.forms.DateTimeWidget property)</a>
+
+      <ul>
+        <li><a href="modules/forms.html#blog.forms.PostForm.media">(blog.forms.PostForm property)</a>
 </li>
+      </ul></li>
       <li><a href="modules/forms.html#blog.forms.PostForm.Meta.model">model (blog.forms.PostForm.Meta attribute)</a>
 
       <ul>
@@ -273,6 +306,8 @@
 </li>
         <li><a href="modules/models.html#module-blog.models">blog.models</a>
 </li>
+        <li><a href="modules/tests.html#module-blog.tests">blog.tests</a>
+</li>
         <li><a href="modules/views.html#module-blog.views">blog.views</a>
 </li>
       </ul></li>
@@ -298,13 +333,41 @@
 </li>
       <li><a href="modules/models.html#blog.models.Post.DoesNotExist">Post.DoesNotExist</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/models.html#blog.models.Post.MultipleObjectsReturned">Post.MultipleObjectsReturned</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/forms.html#blog.forms.PostForm">PostForm (class in blog.forms)</a>
 </li>
       <li><a href="modules/forms.html#blog.forms.PostForm.Meta">PostForm.Meta (class in blog.forms)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogViewTests.posts">posts (blog.tests.BlogViewTests attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.setUp">setUp() (blog.tests.BlogDetailViewTests method)</a>
+
+      <ul>
+        <li><a href="modules/tests.html#blog.tests.BlogIndexViewTests.setUp">(blog.tests.BlogIndexViewTests method)</a>
+</li>
+        <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.setUp">(blog.tests.BlogPostModelTests method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.setUpClass">setUpClass() (blog.tests.BlogPostModelTests class method)</a>
+
+      <ul>
+        <li><a href="modules/tests.html#blog.tests.BlogViewTests.setUpClass">(blog.tests.BlogViewTests class method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.staff_user">staff_user (blog.tests.BlogPostModelTests attribute)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.super_user">super_user (blog.tests.BlogPostModelTests attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -312,6 +375,8 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.tearDownModule">tearDownModule() (in module blog.tests)</a>
+</li>
       <li><a href="modules/views.html#blog.views.DeletePostView.template_name">template_name (blog.views.DeletePostView attribute)</a>
 
       <ul>
@@ -324,11 +389,77 @@
         <li><a href="modules/views.html#blog.views.NewPostView.template_name">(blog.views.NewPostView attribute)</a>
 </li>
       </ul></li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_create_post">test_create_post() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_create_post_staff">test_create_post_staff() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_create_post_super_user">test_create_post_super_user() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.test_detail_view">test_detail_view() (blog.tests.BlogDetailViewTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.test_detail_view_action_buttons_anonymous_user">test_detail_view_action_buttons_anonymous_user() (blog.tests.BlogDetailViewTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.test_detail_view_action_buttons_user">test_detail_view_action_buttons_user() (blog.tests.BlogDetailViewTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.test_detail_view_post">test_detail_view_post() (blog.tests.BlogDetailViewTests method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/models.html#blog.models.Post.text">text (blog.models.Post attribute)</a>
+      <li><a href="modules/tests.html#blog.tests.BlogIndexViewTests.test_index_view">test_index_view() (blog.tests.BlogIndexViewTests method)</a>
 </li>
+      <li><a href="modules/tests.html#blog.tests.BlogIndexViewTests.test_index_view_posts">test_index_view_posts() (blog.tests.BlogIndexViewTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_author">test_post_author() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_date_created">test_post_date_created() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_date_created_default">test_post_date_created_default() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_date_published">test_post_date_published() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_date_published_blank">test_post_date_published_blank() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_image">test_post_image() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_text">test_post_text() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.test_post_title">test_post_title() (blog.tests.BlogPostModelTests method)</a>
+</li>
+      <li><a href="modules/models.html#blog.models.Post.text">text (blog.models.Post attribute)</a>
+
+      <ul>
+        <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.text">(blog.tests.BlogPostModelTests attribute)</a>
+</li>
+      </ul></li>
       <li><a href="modules/models.html#blog.models.Post.title">title (blog.models.Post attribute)</a>
+
+      <ul>
+        <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.title">(blog.tests.BlogPostModelTests attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.BlogPostModelTests.user">user (blog.tests.BlogPostModelTests attribute)</a>
+
+      <ul>
+        <li><a href="modules/tests.html#blog.tests.BlogViewTests.user">(blog.tests.BlogViewTests attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/tests.html#blog.tests.BlogDetailViewTests.user_client">user_client (blog.tests.BlogDetailViewTests attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget.value_from_datadict">value_from_datadict() (blog.forms.DateTimeWidget method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -336,8 +467,12 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/forms.html#blog.forms.PostForm.Meta.widgets">widgets (blog.forms.PostForm.Meta attribute)</a>
+      <li><a href="modules/forms.html#blog.forms.DateTimeWidget.widgets">widgets (blog.forms.DateTimeWidget attribute)</a>
+
+      <ul>
+        <li><a href="modules/forms.html#blog.forms.PostForm.Meta.widgets">(blog.forms.PostForm.Meta attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

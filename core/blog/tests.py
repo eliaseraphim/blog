@@ -43,7 +43,7 @@ class BlogPostModelTests(TestCase):
 
             A user.
 
-        ..py:attribute:: title
+        .. py:attribute:: title
             :type: ``str``
 
             Title for posts.
@@ -190,7 +190,7 @@ class BlogViewTests(TestCase):
         .. py:attribute:: user
             :type: ``django.contrib.auth.models.User``
 
-            An user.
+            A user.
 
         .. py:attribute:: posts
             :type: ``tuple``
