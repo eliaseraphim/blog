@@ -1,19 +1,23 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% if form and post %}
-        <div class="form-group">
-            <form method="POST" class="post-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% include 'blog/post/actions/action-bar.html' %}
-            </form>
-        </div>
-        <div class="container">
-            <article class="post">
-                {% include 'blog/post/post.html' %}
-            </article>
-        </div>
+    {% if user.is_authenticated %}
+        {% if form and post %}
+            <div class="form-group">
+                <form method="POST" class="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'blog/post/actions/action-bar.html' %}
+                </form>
+            </div>
+            <div class="container">
+                <article class="post">
+                    {% include 'blog/post/post.html' %}
+                </article>
+            </div>
+        {% else %}
+            <p>Something went wrong, no form...</p>
+        {% endif %}
     {% else %}
-        <p>Something went wrong, no form...</p>
+        <p>You shouldn't be here...</p>
     {% endif %}
 {% endblock %}

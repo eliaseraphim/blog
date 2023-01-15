@@ -1,15 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% if form %}
-    <div class="form-group">
-        <form method="post" class="post-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% include 'blog/post/actions/action-bar.html' %}
-            {{ form.as_p }}
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        {% if form %}
+        <div class="form-group">
+            <form method="post" class="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include 'blog/post/actions/action-bar.html' %}
+                {{ form.as_p }}
+            </form>
+        </div>
+        {% else %}
+            <p>Something went wrong, the form was not loaded...</p>
+        {% endif %}
     {% else %}
-        <p>Something went wrong, no form...</p>
+        <p>You shouldn't be here...</p>
     {% endif %}
 {% endblock %}

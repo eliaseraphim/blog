@@ -1,9 +1,12 @@
 from datetime import datetime
+
 from django import forms
+from django.utils import timezone
 
 from .models import Post
 
 
+# Widgets
 class DateTimeWidget(forms.MultiWidget):
     """
     Widget for :py:attr:`blog.models.Post.date_published` form field in py:class:`PostForm`.
@@ -66,7 +69,8 @@ class DateTimeWidget(forms.MultiWidget):
         date, time = super().value_from_datadict(data, files, name)
         if time:
             return f'{date} {time}'
-        return f'{date} {datetime.now().strftime("%H:%M")}'
+        return f'{date} {timezone.now().strftime("%H:%M")}'
+
 
 # Forms
 class PostForm(forms.ModelForm):

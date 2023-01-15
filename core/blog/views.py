@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
@@ -33,10 +33,10 @@ class IndexView(generic.ListView):
         """
         Return a :py:class:`QuerySet` of posts.
 
-        :returns: A set of Posts ordered by :py:attr:`blog.models.Post.date_published` (descending).
+        :returns: A set of Posts published before the ``timezone.now()`` ordered by :py:attr:`blog.models.Post.date_published` (descending).
         :rtype: :py:class:`QuerySet`
         """
-        return Post.objects.filter(date_published__isnull=False).order_by('-date_published')
+        return Post.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
 
 
 class DetailView(generic.DetailView):
@@ -62,7 +62,7 @@ class DetailView(generic.DetailView):
     template_name = 'blog/detail.html'
 
 
-class NewPostView(generic.CreateView):
+class NewPostView(LoginRequiredMixin, generic.CreateView):
     """
     The view class for the create view of a post.
 
@@ -105,7 +105,7 @@ class NewPostView(generic.CreateView):
         return reverse('index')
 
 
-class EditPostView(generic.UpdateView):
+class EditPostView(LoginRequiredMixin, generic.UpdateView):
     """
     The view class for the update view of a post.
 
@@ -148,7 +148,7 @@ class EditPostView(generic.UpdateView):
         return reverse('index')
 
 
-class DeletePostView(generic.DeleteView):
+class DeletePostView(LoginRequiredMixin, generic.DeleteView):
     """
     The view class for the delete view of a post.
 
