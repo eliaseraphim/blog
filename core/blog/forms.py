@@ -46,7 +46,6 @@ class DateTimeWidget(forms.MultiWidget):
         :returns: A list containing the date and time objects.
         :rtype: ``list``
         """
-        print(type(value))
         if isinstance(value, datetime):
             return [value.date(), value.time()]
         if isinstance(value, str):
