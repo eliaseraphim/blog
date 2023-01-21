@@ -1,9 +1,27 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <div>
-        <p>Hello!</p>
-        <p>{{ user.email }}</p>
-        <p>{{ user }}</p>
+    <div class="row">
+        <div class="col-4">
+            <img src="{{ user.avatar.url }}" height="250" style="border-radius: 250px">
+            <h1>{{ user.username }}</h1>
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+            <address>{{ user.email }}</address>
+            <address>Website: <a href="{{ user.website }}">{{ user.website }}</a></address>
+            <p>Joined: {{ user.date_joined.date }} | {{ user.date_joined.time }}</p>
+            <div class="d-flex flex-row flex-nowrap justify-content-start align-items-start align-content-start">
+                <p class="mb-1">
+                    Admin: {% if user.is_superuser %}<i class="bi-check-circle"></i>{% else %}<i class="bi-x-circle"></i>{% endif %}
+                </p>
+                <div class="vr mx-3"></div>
+                <p class="mb-1">
+                    Staff: {% if user.is_staff %}<i class="bi-check-circle"></i>{% else %}<i class="bi-x-circle"></i>{% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="col-8">
+            <h3>Bio</h3>
+            <p>{{ user.bio }}</p>
+        </div>
     </div>
 {% endblock %}
