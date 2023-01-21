@@ -16,9 +16,9 @@ from .forms import PostForm
 from .views import IndexView, DetailView
 
 
-TEST_DIR = 'test_data'
-TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, 'test_data', 'test_images')
-TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, 'test_data', 'media')
+TEST_DIR = '_test_data'
+TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, '_test_data', 'test_images')
+TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, '_test_data', 'media')
 
 
 class BlogPostModelTests(TestCase):
