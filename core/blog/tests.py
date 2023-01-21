@@ -5,7 +5,7 @@ import shutil
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
@@ -19,6 +19,8 @@ from .views import IndexView, DetailView
 TEST_DIR = '_test_data'
 TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, '_test_data', 'test_images')
 TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, '_test_data', 'media')
+
+_User = get_user_model()
 
 
 class BlogPostModelTests(TestCase):
@@ -54,9 +56,9 @@ class BlogPostModelTests(TestCase):
             Text for posts.
         """
         # set up users
-        cls.super_user = User(username='super_user', is_active=True, is_staff=True, is_superuser=True)
-        cls.staff_user = User(username='staff_user', is_active=True, is_staff=True)
-        cls.user = User(username='user', is_active=True)
+        cls.super_user = _User(username='super_user', is_active=True, is_staff=True, is_superuser=True)
+        cls.staff_user = _User(username='staff_user', is_active=True, is_staff=True)
+        cls.user = _User(username='user', is_active=True)
 
         # create default data for posts
         cls.title = 'Lorem Ipsum'
@@ -204,7 +206,7 @@ class BlogViewTests(TestCase):
         cls.anonymous_client = Client()
 
         # create and save user
-        cls.user = User(username='user', is_active=True)
+        cls.user = _User(username='user', is_active=True)
 
         # create posts
         cls.posts = (
