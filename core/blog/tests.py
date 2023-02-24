@@ -16,15 +16,16 @@ from .forms import PostForm
 from .views import IndexView, DetailView
 
 
-TEST_DIR = '_test_data'
-TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, '_test_data', 'test_images')
-TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, '_test_data', 'media')
+TEST_DIR = "_test_data"
+TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, "_test_data", "test_images")
+TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, "_test_data", "media")
 
 _User = get_user_model()
 
 
 class BlogPostModelTests(TestCase):
     """Test the :py:class:`blog.models.Post` model."""
+
     @classmethod
     def setUpClass(cls):
         """
@@ -56,15 +57,17 @@ class BlogPostModelTests(TestCase):
             Text for posts.
         """
         # set up users
-        cls.super_user = _User(username='super_user', is_active=True, is_staff=True, is_superuser=True)
-        cls.staff_user = _User(username='staff_user', is_active=True, is_staff=True)
-        cls.user = _User(username='user', is_active=True)
+        cls.super_user = _User(
+            username="super_user", is_active=True, is_staff=True, is_superuser=True
+        )
+        cls.staff_user = _User(username="staff_user", is_active=True, is_staff=True)
+        cls.user = _User(username="user", is_active=True)
 
         # create default data for posts
-        cls.title = 'Lorem Ipsum'
+        cls.title = "Lorem Ipsum"
         cls.text = (
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et ' +
-            'dolore magna aliqua. In fermentum et sollicitudin ac. Nisl tincidunt eget nullam non nisi.'
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et "
+            + "dolore magna aliqua. In fermentum et sollicitudin ac. Nisl tincidunt eget nullam non nisi."
         )
 
         # must call super, since django has its own implementation
@@ -115,18 +118,22 @@ class BlogPostModelTests(TestCase):
 
         self.assertEqual(self.text, post.text)
 
-    @override_settings(MEDIA_ROOT=(os.path.join(TEST_DIR_MEDIA_ROOT, 'test_post_image')))
+    @override_settings(
+        MEDIA_ROOT=(os.path.join(TEST_DIR_MEDIA_ROOT, "test_post_image"))
+    )
     def test_post_image(self):
         """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.image` from model object."""
-        path = os.path.join(TEST_IMAGES_PATH, 'test.png')
-        image = SimpleUploadedFile(name='test.png', content=open(path, 'rb').read(), content_type='image/png')
+        path = os.path.join(TEST_IMAGES_PATH, "test.png")
+        image = SimpleUploadedFile(
+            name="test.png", content=open(path, "rb").read(), content_type="image/png"
+        )
 
         Post(author=self.user, title=self.title, text=self.text, image=image).save()
         post = Post.objects.last()
 
-        with open(path, 'rb') as file:
+        with open(path, "rb") as file:
             original_image_hash = hashlib.sha256(file.read()).hexdigest()
-        with open(post.image.path, 'rb') as file:
+        with open(post.image.path, "rb") as file:
             post_image_hash = hashlib.sha256(file.read()).hexdigest()
 
         self.assertIsNotNone(post.image)
@@ -137,7 +144,9 @@ class BlogPostModelTests(TestCase):
         Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.date_created` from model object.
         """
         now = timezone.now()
-        Post(author=self.user, title=self.title, text=self.text, date_created=now).save()
+        Post(
+            author=self.user, title=self.title, text=self.text, date_created=now
+        ).save()
         post = Post.objects.last()
 
         self.assertIsInstance(post.date_created, datetime)
@@ -161,7 +170,9 @@ class BlogPostModelTests(TestCase):
         Test that a :py:class:`blog.models.Post` retains :py:attr:`blog.models.Post.date_published` from model object.
         """
         now = timezone.now()
-        Post(author=self.user, title=self.title, text=self.text, date_published=now).save()
+        Post(
+            author=self.user, title=self.title, text=self.text, date_published=now
+        ).save()
         post = Post.objects.last()
 
         self.assertIsInstance(post.date_published, datetime)
@@ -179,6 +190,7 @@ class BlogPostModelTests(TestCase):
 
 class BlogViewTests(TestCase):
     """Test the views of the blog application. See :py:mod:`blog.views`."""
+
     @classmethod
     def setUpClass(cls):
         """
@@ -206,15 +218,20 @@ class BlogViewTests(TestCase):
         cls.anonymous_client = Client()
 
         # create and save user
-        cls.user = _User(username='user', is_active=True)
+        cls.user = _User(username="user", is_active=True)
 
         # create posts
         cls.posts = (
-            Post(author=cls.user, title='Post 1', text='Text 1.', date_published=now),
-            Post(author=cls.user, title='Post 2', text='Text 2.', date_published=now),
-            Post(author=cls.user, title='Post 3', text='Text 3.', date_published=now),
-            Post(author=cls.user, title='Future Post', text='Future text.', date_published=future),
-            Post(author=cls.user, title='Unpublished Post', text='Unpublished text.'),
+            Post(author=cls.user, title="Post 1", text="Text 1.", date_published=now),
+            Post(author=cls.user, title="Post 2", text="Text 2.", date_published=now),
+            Post(author=cls.user, title="Post 3", text="Text 3.", date_published=now),
+            Post(
+                author=cls.user,
+                title="Future Post",
+                text="Future text.",
+                date_published=future,
+            ),
+            Post(author=cls.user, title="Unpublished Post", text="Unpublished text."),
         )
 
         super().setUpClass()
@@ -222,6 +239,7 @@ class BlogViewTests(TestCase):
 
 class BlogIndexViewTests(BlogViewTests):
     """Test the :py:class:`blog.views.IndexView` class view."""
+
     def setUp(self):
         """Set up the database for each test. Currently, it saves the user and posts to the database."""
         self.user.save()
@@ -230,8 +248,8 @@ class BlogIndexViewTests(BlogViewTests):
 
     def test_index_view(self):
         """Test that the index url returns an :py:class:`blog.views.IndexView`."""
-        response = self.anonymous_client.get('')
-        response_view = response.context_data['view']
+        response = self.anonymous_client.get("")
+        response_view = response.context_data["view"]
         self.assertIsInstance(response_view, IndexView)
 
     def test_index_view_posts(self):
@@ -239,9 +257,11 @@ class BlogIndexViewTests(BlogViewTests):
         Test that py:class:`blogs.views.IndexView` returns only posts that have been published before
         ``timezone.now()``.
         """
-        response = self.anonymous_client.get('')
-        response_posts = response.context_data['posts']
-        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
+        response = self.anonymous_client.get("")
+        response_posts = response.context_data["posts"]
+        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by(
+            "-date_published"
+        )
 
         self.assertEqual(len(posts), len(response_posts))
         for post, response_post in zip(posts, response_posts):
@@ -249,16 +269,22 @@ class BlogIndexViewTests(BlogViewTests):
 
     def test_index_view_links(self):
         """Test that py:class:`blog.views.IndexView` returns links to the posts detail view."""
-        response = self.anonymous_client.get('')
-        response_posts = response.context_data['posts']
-        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
+        response = self.anonymous_client.get("")
+        response_posts = response.context_data["posts"]
+        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by(
+            "-date_published"
+        )
 
         for post, response_post in zip(posts, response_posts):
-            url = reverse('detail', kwargs={'pk': post.pk})
-            post_anchor = bytes(f'<h2><a href="{url}">{post.title}</a></h2>', encoding='utf-8')
+            url = reverse("detail", kwargs={"pk": post.pk})
+            post_anchor = bytes(
+                f'<h2><a href="{url}">{post.title}</a></h2>', encoding="utf-8"
+            )
 
-            url = reverse('detail', kwargs={'pk': response_post.pk})
-            response_post_anchor = bytes(f'<h2><a href="{url}">{response_post.title}</a></h2>', encoding='utf-8')
+            url = reverse("detail", kwargs={"pk": response_post.pk})
+            response_post_anchor = bytes(
+                f'<h2><a href="{url}">{response_post.title}</a></h2>', encoding="utf-8"
+            )
 
             self.assertEqual(post_anchor, response_post_anchor)
             self.assertIn(post_anchor, response.content)
@@ -266,6 +292,7 @@ class BlogIndexViewTests(BlogViewTests):
 
 class BlogDetailViewTests(BlogViewTests):
     """Test the :py:class:`blog.views.DetailView` class view."""
+
     def setUp(self):
         """
         Set up the database for each test. Currently, it saves the user and posts to the database, and makes a user
@@ -285,34 +312,36 @@ class BlogDetailViewTests(BlogViewTests):
 
     def test_detail_view(self):
         """Test that the detail url for a post returns a :py:class:`blog.views.DetailView`."""
-        post = Post.objects.get(title__exact='Post 1')
+        post = Post.objects.get(title__exact="Post 1")
 
-        url = reverse('detail', kwargs={'pk': post.pk})
+        url = reverse("detail", kwargs={"pk": post.pk})
         response = self.anonymous_client.get(url)
-        response_view = response.context_data['view']
+        response_view = response.context_data["view"]
 
         self.assertIsInstance(response_view, DetailView)
 
     def test_detail_view_post(self):
         """Test that detail view for a post matches the post in the database."""
-        post = Post.objects.get(title__exact='Post 1')
+        post = Post.objects.get(title__exact="Post 1")
 
-        url = reverse('detail', kwargs={'pk': post.pk})
+        url = reverse("detail", kwargs={"pk": post.pk})
         response = self.anonymous_client.get(url)
-        response_post = response.context_data['post']
+        response_post = response.context_data["post"]
 
         self.assertEqual(post, response_post)
 
     def test_detail_view_title_header(self):
         """Test that detail view title header does not contain an anchor."""
-        post = Post.objects.get(title__exact='Post 1')
+        post = Post.objects.get(title__exact="Post 1")
 
-        url = reverse('detail', kwargs={'pk': post.pk})
+        url = reverse("detail", kwargs={"pk": post.pk})
         response = self.anonymous_client.get(url)
-        response_post = response.context_data['post']
+        response_post = response.context_data["post"]
 
-        post_header = bytes(f'<h2>{post.title}</h2>', encoding='utf-8')
-        response_post_header = bytes(f'<h2>{response_post.title}</h2>', encoding='utf-8')
+        post_header = bytes(f"<h2>{post.title}</h2>", encoding="utf-8")
+        response_post_header = bytes(
+            f"<h2>{response_post.title}</h2>", encoding="utf-8"
+        )
 
         self.assertEqual(post_header, response_post_header)
         self.assertIn(post_header, response.content)
@@ -321,30 +350,40 @@ class BlogDetailViewTests(BlogViewTests):
         """
         Test that a response from the detail view for a post does not contain action buttons for an anonymous user.
         """
-        post = Post.objects.get(title__exact='Post 1')
+        post = Post.objects.get(title__exact="Post 1")
 
-        detail_url = reverse('detail', kwargs={'pk': post.pk})
+        detail_url = reverse("detail", kwargs={"pk": post.pk})
         response = self.anonymous_client.get(detail_url)
 
-        edit_url = reverse('edit_post', kwargs={'pk': post.pk})
-        delete_url = reverse('delete_post', kwargs={'pk': post.pk})
-        edit_button_anchor = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
-        delete_button_anchor = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
+        edit_url = reverse("edit_post", kwargs={"pk": post.pk})
+        delete_url = reverse("delete_post", kwargs={"pk": post.pk})
+        edit_button_anchor = bytes(
+            f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding="utf-8"
+        )
+        delete_button_anchor = bytes(
+            f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>',
+            encoding="utf-8",
+        )
 
         self.assertNotIn(edit_button_anchor, response.content)
         self.assertNotIn(delete_button_anchor, response.content)
 
     def test_detail_view_action_buttons_user(self):
         """Test that a response from the detail view for a post does contain action buttons for a user."""
-        post = Post.objects.get(title__exact='Post 1')
+        post = Post.objects.get(title__exact="Post 1")
 
-        detail_url = reverse('detail', kwargs={'pk': post.pk})
+        detail_url = reverse("detail", kwargs={"pk": post.pk})
         response = self.user_client.get(detail_url)
 
-        edit_url = reverse('edit_post', kwargs={'pk': post.pk})
-        delete_url = reverse('delete_post', kwargs={'pk': post.pk})
-        edit_button_anchor = bytes(f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding='utf-8')
-        delete_button_anchor = bytes(f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>', encoding='utf-8')
+        edit_url = reverse("edit_post", kwargs={"pk": post.pk})
+        delete_url = reverse("delete_post", kwargs={"pk": post.pk})
+        edit_button_anchor = bytes(
+            f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding="utf-8"
+        )
+        delete_button_anchor = bytes(
+            f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>',
+            encoding="utf-8",
+        )
 
         self.assertIn(edit_button_anchor, response.content)
         self.assertIn(delete_button_anchor, response.content)

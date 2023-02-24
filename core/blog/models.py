@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class Post(models.Model):
@@ -43,12 +44,22 @@ class Post(models.Model):
 
             django.db.models.DateTimeField(blank=True, null=True)
     """
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    image = models.ImageField(blank=True, null=True, upload_to='images/%Y/%m/%d')
+
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        help_text=_("Author of the post."),
+        on_delete=models.CASCADE,
+    )
+    title = models.CharField(help_text=_("Title of the post."), max_length=200)
+    text = models.TextField(help_text=_("Text of the post."))
+    image = models.ImageField(
+        blank=True,
+        help_text=_("Image uploaded with post."),
+        null=True,
+        upload_to="images/%Y/%m/%d",
+    )
     date_created = models.DateTimeField(default=timezone.now)
-    date_published = models.DateTimeField (blank=True, null=True)
+    date_published = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         """

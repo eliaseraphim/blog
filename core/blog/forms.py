@@ -21,6 +21,7 @@ class DateTimeWidget(forms.MultiWidget):
                 forms.TimeInput(attrs=attrs, format='%H:%M'),
             ]
     """
+
     def __init__(self, attrs=None):
         """
         Constructor for py:class:`DateTimeWidget`.
@@ -28,11 +29,11 @@ class DateTimeWidget(forms.MultiWidget):
         :param attrs: Optional parameter. The HTML attributes for the form fields.
         :type attrs: ``dict`` or ``None``
         """
-        date_input_attrs = {**attrs, 'type': 'date'} if attrs else {'type': 'date'}
-        time_input_attrs = {**attrs, 'type': 'time'} if attrs else {'type': 'time'}
+        date_input_attrs = {**attrs, "type": "date"} if attrs else {"type": "date"}
+        time_input_attrs = {**attrs, "type": "time"} if attrs else {"type": "time"}
         widgets = [
-            forms.DateInput(attrs=date_input_attrs, format='%m/%d/%Y'),
-            forms.TimeInput(attrs=time_input_attrs, format='%H:%M'),
+            forms.DateInput(attrs=date_input_attrs, format="%m/%d/%Y"),
+            forms.TimeInput(attrs=time_input_attrs, format="%H:%M"),
         ]
 
         super().__init__(widgets, attrs)
@@ -67,13 +68,14 @@ class DateTimeWidget(forms.MultiWidget):
         """
         date, time = super().value_from_datadict(data, files, name)
         if time:
-            return f'{date} {time}'
+            return f"{date} {time}"
         return f'{date} {timezone.now().strftime("%H:%M")}'
 
 
 # Forms
 class PostForm(forms.ModelForm):
     """Form for editing and deleting a Post. Extends :py:class:`django.forms.ModelForm`."""
+
     class Meta:
         """
         Metadata for :py:class:`PostForm`.
@@ -99,11 +101,12 @@ class PostForm(forms.ModelForm):
                     'date_published': DateTimeWidget(attrs={'class': 'form-control'}),
                 }
         """
+
         model = Post
-        fields = ('title', 'author', 'text', 'image', 'date_published')
+        fields = ("title", "author", "text", "image", "date_published")
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
-            'text': forms.Textarea(attrs={'class': 'form-control'}),
-            'date_published': DateTimeWidget(attrs={'class': 'form-control mx-2'}),
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "author": forms.Select(attrs={"class": "form-control"}),
+            "text": forms.Textarea(attrs={"class": "form-control"}),
+            "date_published": DateTimeWidget(attrs={"class": "form-control mx-2"}),
         }

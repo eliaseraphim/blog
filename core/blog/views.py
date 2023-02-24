@@ -25,15 +25,18 @@ class IndexView(generic.ListView):
 
             template_name = 'blog/index.html'
     """
+
     model = Post
-    context_object_name = 'posts'
-    template_name = 'blog/index.html'
+    context_object_name = "posts"
+    template_name = "blog/index.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context_data = super().get_context_data(object_list=object_list, **kwargs)
-        context_data.update({
-            'view_name': 'IndexView',
-        })
+        context_data.update(
+            {
+                "view_name": "IndexView",
+            }
+        )
 
         return context_data
 
@@ -44,7 +47,9 @@ class IndexView(generic.ListView):
         :returns: A set of Posts published before the ``timezone.now()`` ordered by :py:attr:`blog.models.Post.date_published` (descending).
         :rtype: :py:class:`QuerySet`
         """
-        return Post.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
+        return Post.objects.filter(date_published__lte=timezone.now()).order_by(
+            "-date_published"
+        )
 
 
 class DetailView(generic.DetailView):
@@ -65,9 +70,10 @@ class DetailView(generic.DetailView):
 
             template_name = 'blog/detail.html'
     """
+
     model = Post
-    context_object_name = 'post'
-    template_name = 'blog/detail.html'
+    context_object_name = "post"
+    template_name = "blog/detail.html"
 
 
 class NewPostView(LoginRequiredMixin, generic.CreateView):
@@ -88,10 +94,11 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
 
             template_name = 'blog/post/actions/edit.html'
     """
+
     model = Post
     form_class = PostForm
-    context_object_name = 'form'
-    template_name = 'blog/post/actions/edit.html'
+    context_object_name = "form"
+    template_name = "blog/post/actions/edit.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -101,16 +108,18 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
         :rtype: :py:class:`dict`
         """
         context_data = super().get_context_data(**kwargs)
-        context_data.update({
-            'form_action': 'Save Post',
-            'button_text': 'Save',
-        })
+        context_data.update(
+            {
+                "form_action": "Save Post",
+                "button_text": "Save",
+            }
+        )
 
         return context_data
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
-        return reverse('index')
+        return reverse("index")
 
 
 class EditPostView(LoginRequiredMixin, generic.UpdateView):
@@ -131,10 +140,11 @@ class EditPostView(LoginRequiredMixin, generic.UpdateView):
 
             template_name = 'blog/post/actions/edit.html'
     """
+
     model = Post
     form_class = PostForm
-    context_object_name = 'form'
-    template_name = 'blog/post/actions/edit.html'
+    context_object_name = "form"
+    template_name = "blog/post/actions/edit.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -144,16 +154,18 @@ class EditPostView(LoginRequiredMixin, generic.UpdateView):
         :rtype: :py:class:`dict`
         """
         context_data = super().get_context_data(**kwargs)
-        context_data.update({
-            'form_action': 'Edit Post',
-            'button_text': 'Edit',
-        })
+        context_data.update(
+            {
+                "form_action": "Edit Post",
+                "button_text": "Edit",
+            }
+        )
 
         return context_data
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
-        return reverse('index')
+        return reverse("index")
 
 
 class DeletePostView(LoginRequiredMixin, generic.DeleteView):
@@ -174,9 +186,10 @@ class DeletePostView(LoginRequiredMixin, generic.DeleteView):
 
             template_name = 'blog/post/actions/delete.html'
     """
+
     model = Post
-    context_object_name = 'post'
-    template_name = 'blog/post/actions/delete.html'
+    context_object_name = "post"
+    template_name = "blog/post/actions/delete.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -186,13 +199,15 @@ class DeletePostView(LoginRequiredMixin, generic.DeleteView):
         :rtype: :py:class:`dict`
         """
         context_data = super().get_context_data(**kwargs)
-        context_data.update({
-            'form_action': 'Delete Post',
-            'button_text': 'Delete',
-        })
+        context_data.update(
+            {
+                "form_action": "Delete Post",
+                "button_text": "Delete",
+            }
+        )
 
         return context_data
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to :py:class:`IndexView`."""
-        return reverse('index')
+        return reverse("index")

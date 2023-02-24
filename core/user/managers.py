@@ -7,6 +7,8 @@ class UserManager(models.UserManager):
     def _create_user(self, username, email, password, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
+
+        :param username:
         """
         if not username:
             raise ValueError(_("The given username must be set."))

@@ -5,15 +5,16 @@ import user.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('user', '0003_rename_image_user_avatar'),
+        ("user", "0003_rename_image_user_avatar"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='avatar',
-            field=models.ImageField(blank=True, null=True, upload_to=user.models.user_avatar_path),
+            model_name="user",
+            name="avatar",
+            field=models.ImageField(
+                blank=True, null=True, upload_to=user.models.user_avatar_path
+            ),
         ),
     ]
