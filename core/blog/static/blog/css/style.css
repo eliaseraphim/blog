@@ -1,4 +1,10 @@
 :root {
+    --dark-green: #1b2912ff;
+    --dark-moss-green: #5e6135ff;
+    --sage: #9fa58bff;
+    --cambridge-blue: #76998bff;
+    --indian-red: #c45852ff;
+
     --red_1: #e06c75;
     --orange_1: #d19a66;
     --orange_2: #e6c07b;
@@ -19,8 +25,8 @@
 }
 
 body {
-    background-color: var(--base0);
-    color: var(--base10);
+    background-color: var(--sage);
+    color: var(--dark-green);
     font-family: 'consolas';
 }
 
@@ -34,8 +40,9 @@ a.nav-link,
 a.nav-link:link,
 a.nav-link:hover,
 a.nav-link:visited {
-    color: var(--cyan);
-    font-size: 16pt;
+    color: var(--indian-red);
+    font-size: 1.5em;
+
     text-decoration: none;
 }
 
@@ -44,8 +51,8 @@ a.nav-link:visited {
 .post h2 a,
 .post h2 a:visited,
 .post h2 a:active {
-    color: var(--green);
-    font-size: 24pt;
+    color: var(--indian-red);
+
     text-decoration: none;
 }
 

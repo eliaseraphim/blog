@@ -1,7 +1,6 @@
 import hashlib
 import os
 import shutil
-
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -11,10 +10,9 @@ from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import Post
 from .forms import PostForm
-from .views import IndexView, DetailView
-
+from .models import Post
+from .views import DetailView, IndexView
 
 TEST_DIR = "_test_data"
 TEST_IMAGES_PATH = os.path.join(settings.BASE_DIR, "_test_data", "test_images")

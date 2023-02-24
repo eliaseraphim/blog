@@ -4,6 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
+
 import django
 
 sys.path.insert(0, os.path.abspath(".."))

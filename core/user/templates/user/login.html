@@ -4,7 +4,9 @@
     <div class="row text-center justify-content-center">
         <div class="col-6">
             {% if form.errors %}
-                <p>Your username and password didn't match. Please try again.</p>
+                <div class="alert alert-warning" role="alert">
+                    <i class="bi bi-exclamation-diamond-fill"></i> Your username and password didn't match. Please try again.
+                </div>
             {% endif %}
 
             {% if next %}
@@ -19,16 +21,18 @@
                 <form class="post-form" method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     <div class="my-3 d-flex flex-row flex-nowrap justify-content-start align-items-center align-content-center">
-                        <label for="id_username" class="form-label me-3">username</label>
+                        <label for="id_username" class="form-label me-3">{{ form.username.label }}:</label>
                         {{ form.username }}
                     </div>
                     <div class="my-3 d-flex flex-row flex-nowrap justify-content-start align-items-center align-content-center">
-                        <label for="id_password" class="form-label me-3">password</label>
+                        <label for="id_password" class="form-label me-3">{{ form.password.label }}:</label>
                         {{ form.password }}
                     </div>
-                    <div class="my-3 d-flex flex-row flex-nowrap justify-content-evenly align-items-center align-content-center">
-                        <input class="btn btn-primary" type="submit" value="login">
-                        <a class="btn btn-danger" href="#">forgot password</a>
+                    <div class="my-3 d-block">
+                        <input class="btn btn-primary" type="submit" value="Login">
+                    </div>
+                    <div class="my-3 d-block">
+                        <p><i>Having difficulty logging in?</i> <a class="btn btn-danger" href="#">Reset Password</a></p>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </form>

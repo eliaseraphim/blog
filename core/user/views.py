@@ -4,7 +4,6 @@ from django.views.generic import TemplateView
 
 from .forms import LoginForm
 
-
 _User = get_user_model()
 
 
