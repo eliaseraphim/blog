@@ -18,7 +18,7 @@ class User(AbstractUser):
         _("email address"),
         blank=False,
         help_text=_("Required. Please enter a valid email."),
-        max_length=64,
+        max_length=254,
     )
     avatar = models.ImageField(
         blank=True,

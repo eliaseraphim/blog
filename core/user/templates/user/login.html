@@ -33,10 +33,12 @@
                         {{ form.password }}
                     </div>
                     <div class="my-3 d-block">
-                        <input class="btn btn-primary" type="submit" value="Login">
+                        <input class="btn btn-primary btn" type="submit" value="Log In">
                     </div>
-                    <div class="my-3 d-block">
-                        <p><i>Having difficulty logging in?</i> <a class="btn btn-danger" href="#">Reset Password</a></p>
+                    <div class="my-5 d-block">
+                        <p><i>Having difficulty logging in?</i></p>
+                        <a class="btn btn-warning" href="#">Forgot Username</a>
+                        <a class="btn btn-danger" href="{% url 'password_reset' %}">Reset Password</a>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </form>
