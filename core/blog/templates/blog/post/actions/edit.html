@@ -3,40 +3,43 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% if form %}
-        <div class="form-group">
-            <form method="post" class="post-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div>
-                    {% include 'blog/post/actions/action-bar.html' %}
-                </div>
-                <div class="mb-3">
-                    <label for="title_id" class="form-label">Title:</label>
-                    {{ form.title }}
-                </div>
-                <div class="mb-3">
-                    <label for="id_author" class="form-label">Author:</label>
-                    {{ form.author }}
-                </div>
-                <div class="mb-3">
-                    <label for="id_text" class="form-label">Text:</label>
-                    {{ form.text }}
-                </div>
-                <div class="mb-3">
-                    <label for="id_image" class="form-label">Image:</label>
-                    {{ form.image }}
-                </div>
-                <div class="mb-3">
-                    <label for="id_date_published_0" class="form-label">Publish Date:</label>
-                    <div class="d-flex flex-row">
-                        {{ form.date_published.0 }}
+            <div class="form-group">
+                <form method="post" class="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div>
+                        {% include 'blog/post/actions/action-bar.html' %}
                     </div>
-                </div>
-            </form>
-        </div>
+                    <div class="mb-3">
+                        <label for="title_id" class="form-label">Title:</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_author" class="form-label">Author:</label>
+                        {{ form.author }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_text" class="form-label">Text:</label>
+                        {{ form.text }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_image" class="form-label">Image:</label>
+                        {{ form.image }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_date_published_0" class="form-label">Publish Date:</label>
+                        {% for field in form.date_published %}
+                            {{ field }}
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
         {% else %}
             <p>Something went wrong, the form was not loaded...</p>
         {% endif %}
     {% else %}
         <p>You shouldn't be here...</p>
     {% endif %}
+    <script>
+        var simplemde = new SimpleMDE({ element: document.getElementById("id_text") });
+    </script>
 {% endblock %}

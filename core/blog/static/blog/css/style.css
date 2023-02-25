@@ -102,3 +102,7 @@ a.nav-link:visited {
 .save {
     float: right;
 }
+
+form .editor-toolbar {
+    background-color: var(--cambridge-blue);
+}

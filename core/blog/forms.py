@@ -108,5 +108,6 @@ class PostForm(forms.ModelForm):
             "title": forms.TextInput(attrs={"class": "form-control"}),
             "author": forms.Select(attrs={"class": "form-control"}),
             "text": forms.Textarea(attrs={"class": "form-control"}),
-            "date_published": DateTimeWidget(attrs={"class": "form-control mx-2"}),
+            "image": forms.ClearableFileInput(attrs={"class": "form-control"}),
+            "date_published": DateTimeWidget(attrs={"class": "form-control"}),
         }

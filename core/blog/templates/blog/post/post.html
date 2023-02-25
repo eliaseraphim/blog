@@ -1,3 +1,5 @@
+{% load markdownify %}
+
 {% block content %}
     {% if view_name == 'IndexView' %}
         <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
@@ -5,7 +7,9 @@
         <h2>{{ post.title }}</h2>
     {% endif %}
     <div>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <div>
+            {{ post.text|markdownify }}
+        </div>
         {% if post.image %}
             <img class="rounded mx-auto d-block" src="{{ post.image.url }}" style="max-height: 500px;">
             <p class="image-location">{{ post.image.url }}</p>

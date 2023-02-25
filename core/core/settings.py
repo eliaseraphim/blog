@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user.apps.UserConfig",
     "blog.apps.BlogConfig",
+    "markdownify.apps.MarkdownifyConfig",
     "debug_toolbar",
     "django_cleanup.apps.CleanupConfig",
 ]
@@ -73,6 +74,37 @@ TEMPLATES = [
         },
     },
 ]
+
+# Markdownify
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            'a',
+            'abbr',
+            'acronym',
+            'b',
+            'blockquote',
+            'code',
+            'em',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'i',
+            'li',
+            'ol',
+            'p',
+            'pre',
+            'samp',
+            'strong',
+            'ul',
+        ],
+        "MARKDOWN_EXTENSIONS": [
+            'markdown.extensions.fenced_code',
+        ]
+    }
+}
 
 WSGI_APPLICATION = "core.wsgi.application"
 
