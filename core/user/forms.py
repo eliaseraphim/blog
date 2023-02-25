@@ -10,6 +10,7 @@ class LoginForm(auth_forms.AuthenticationForm):
         strip=True,
         widget=forms.TextInput(
             attrs={
+                "autocomplete": "username",
                 "autofocus": True,
                 "class": "form-control",
                 "placeholder": "Enter your username here...",
@@ -28,6 +29,8 @@ class LoginForm(auth_forms.AuthenticationForm):
             }
         ),
     )
+
+    field_order = ["username", "password"]
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):
@@ -67,3 +70,22 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
             }
         ),
     )
+
+    field_order = ["new_password1", "new_password2"]
+
+
+class PasswordChangeForm(SetPasswordForm):
+    old_password = forms.CharField(
+        label=_("Old Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "current-password",
+                "autofocus": True,
+                "class": "form-control",
+                "placeholder": "Enter your old password here...",
+            }
+        ),
+    )
+
+    field_order = ["old_password", "new_password1", "new_password2"]

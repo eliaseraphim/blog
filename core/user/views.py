@@ -1,10 +1,8 @@
-from django.contrib.auth import get_user_model, views
+from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-from .forms import LoginForm, PasswordResetForm, SetPasswordForm
-
-_User = get_user_model()
+from .forms import LoginForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 
 
 class UserView(LoginRequiredMixin, TemplateView):
@@ -37,4 +35,13 @@ class PasswordResetConfirmView(views.PasswordResetConfirmView):
 
 
 class PasswordResetCompleteView(views.PasswordResetCompleteView):
-    pass
+    template_name = "user/password_reset_complete.html"
+
+
+class PasswordChangeView(views.PasswordChangeView):
+    form_class = PasswordChangeForm
+    template_name = "user/password_change_form.html"
+
+
+class PasswordChangeDoneView(views.PasswordChangeDoneView):
+    template_name = "user/password_change_done.html"

@@ -3,16 +3,6 @@
 {% block content %}
     <div class="row text-center justify-content-center">
         <div class="col-6">
-            {% if form.errors %}
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <div class="alert alert-warning" role="alert">
-                            <i class="bi bi-exclamation-diamond-fill"></i> {{ error }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            {% endif %}
-
             {% if next %}
                 {% if user.is_authenticated %}
                     <p>Your account does not have access to this page. To proceed, please login with an account that has access.</p>
@@ -22,23 +12,16 @@
             {% endif %}
 
             <div class="form-group">
-                <form class="post-form" method="post" action="{% url 'login' %}">
+                <form class="post-form" method="post">
                     {% csrf_token %}
-                    <div class="my-3 d-flex flex-row flex-nowrap justify-content-start align-items-center align-content-center">
-                        <label for="id_username" class="form-label me-3">{{ form.username.label }}:</label>
-                        {{ form.username }}
-                    </div>
-                    <div class="my-3 d-flex flex-row flex-nowrap justify-content-start align-items-center align-content-center">
-                        <label for="id_password" class="form-label me-3">{{ form.password.label }}:</label>
-                        {{ form.password }}
-                    </div>
+                    {% include 'user/forms/base.html' %}
                     <div class="my-3 d-block">
-                        <input class="btn btn-primary btn" type="submit" value="Log In">
+                        <input class="btn btn-primary btn" type="submit" value="Log In"/>
                     </div>
                     <div class="my-5 d-block">
                         <p><i>Having difficulty logging in?</i></p>
-                        <a class="btn btn-warning" href="#">Forgot Username</a>
-                        <a class="btn btn-danger" href="{% url 'password_reset' %}">Reset Password</a>
+                        <a class="btn btn-warning" href="#"><i class="bi bi-person-fill-exclamation"></i> Forgot Username</a>
+                        <a class="btn btn-danger" href="{% url 'password_reset' %}"><i class="bi bi-person-fill-exclamation"></i> Reset Password</a>
                     </div>
                     <input type="hidden" name="next" value="{{ next }}">
                 </form>
