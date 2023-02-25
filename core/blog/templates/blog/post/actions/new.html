@@ -4,11 +4,11 @@
 {% if user.is_authenticated %}
     {% if form %}
         <div class="form-group">
-            <form method="post" class="post-form" enctype="multipart/form-data">
+            <form method="post" class="post-form" enctype="multipart/form-data" action="{% url 'new_post' %}">
                 {% csrf_token %}
                 {% include 'blog/post/actions/form.html' %}
                 <div class="mt-5 mb-3 d-block">
-                    <input class="btn btn-primary" type="submit" value="Save Edits to Post"/>
+                    <input class="btn btn-primary" type="submit" value="Save New Post">
                 </div>
             </form>
         </div>

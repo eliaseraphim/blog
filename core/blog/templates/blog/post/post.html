@@ -1,23 +1,25 @@
 {% load markdownify %}
 
-{% block content %}
+{% block post %}
     {% if view_name == 'IndexView' %}
         <h2><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h2>
     {% else %}
         <h2>{{ post.title }}</h2>
     {% endif %}
     <div>
-        <div>
+        <div class="post-text">
             {{ post.text|markdownify }}
         </div>
         {% if post.image %}
-            <img class="rounded mx-auto d-block" src="{{ post.image.url }}" style="max-height: 500px;">
-            <p class="image-location">{{ post.image.url }}</p>
+            <div class="post-image">
+                <img class="rounded mx-auto d-block" src="{{ post.image.url }}" style="max-height: 500px;">
+                <p class="image-location">{{ post.image.url }}</p>
+            </div>
         {% endif %}
-        <div class="information">
+        <div class="post-information">
             <p>author: {{ post.author }}</p>
-            <time>created: {{ post.date_created }} | published: {{ post.date_published }}</time>
+            <time>created: {{ post.created }} | last_edited: {{ post.last_edited }}</time>
         </div>
     </div>
     <hr>
-{% endblock %}
+{% endblock post %}

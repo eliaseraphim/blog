@@ -5,8 +5,8 @@
         <article class="post">
             {% if user.is_authenticated %}
                 <aside class="actions">
-                    <a class="btn btn-primary" href="{% url 'edit_post' pk=post.pk %}">Edit</a>
-                    <a class="btn btn-secondary" href="{% url 'delete_post' pk=post.pk %}">Delete</a>
+                    <a class="btn btn-primary" href="{% url 'edit_post' pk=post.pk %}">Edit Post</a>
+                    <a class="btn btn-danger" href="{% url 'delete_post' pk=post.pk %}">Delete Post</a>
                 </aside>
             {% endif %}
             {%  include 'blog/post/post.html' %}

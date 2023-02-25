@@ -31,7 +31,7 @@ class IndexView(generic.ListView):
     template_name = "blog/index.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super().get_context_data(posts=object_list, **kwargs)
+        context_data = super().get_context_data(object_list=object_list, **kwargs)
 
         context_data.update(
             {
@@ -49,7 +49,7 @@ class IndexView(generic.ListView):
             (descending).
         :rtype: :py:class:`QuerySet`
         """
-        return Post.objects.filter(created__lte=timezone.now()).order_by(
+        return Post.objects.all().order_by(
             "-created"
         )
 
@@ -100,7 +100,7 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
     model = Post
     form_class = PostForm
     context_object_name = "form"
-    template_name = "blog/post/actions/edit.html"
+    template_name = "blog/post/actions/new.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -118,6 +118,12 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
         )
 
         return context_data
+
+    def post(self, request, *args, **kwargs):
+        if request.POST:
+            print(request.POST)
+
+        return super().post(request, args, kwargs)
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""

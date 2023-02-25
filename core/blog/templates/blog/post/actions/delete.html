@@ -1,23 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        {% if form and post %}
-            <div class="form-group">
-                <form method="POST" class="post-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% include 'blog/post/actions/action-bar.html' %}
-                </form>
-            </div>
-            <div class="container">
-                <article class="post">
-                    {% include 'blog/post/post.html' %}
-                </article>
-            </div>
-        {% else %}
-            <p>Something went wrong, no form...</p>
-        {% endif %}
+{% if user.is_authenticated %}
+    {% if form and post %}
+        <h1>Delete</h1>
+        <div class="container">
+            <article class="post">
+                {% include 'blog/post/post.html' %}
+            </article>
+            <form method="POST" class="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mt-5 mb-3 d-block">
+                    <input class="btn btn-danger" type="submit" value="Delete Post">
+                </div>
+            </form>
+        </div>
     {% else %}
-        <p>You shouldn't be here...</p>
+        <p>Something went wrong, no form...</p>
     {% endif %}
+{% else %}
+    <p>You shouldn't be here...</p>
+{% endif %}
 {% endblock %}

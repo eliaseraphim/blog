@@ -1,0 +1,31 @@
+{% block post_form %}
+{% if user.is_authenticated %}
+    {% if form %}
+        {% if form.errors %}
+            {% for error in form.errors %}
+                {{ error }}
+            {% endfor %}
+        {% endif %}
+        {% if form.non_field_errors %}
+            {% for non_field_error in form.non_field_errors %}
+                <div class="alert alert-warning" role="alert">
+                    <i class="bi bi-exclamation-diamond-fill"></i> {{ non_field_error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% for field in form %}
+            <div class="my-3 form-row text-start">
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-diamond-fill"></i> {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}:</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+{% endblock %}
