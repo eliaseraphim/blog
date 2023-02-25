@@ -32,17 +32,17 @@ class Post(models.Model):
 
             django.db.models.ImageField(blank=true, null=True, upload_to='images/%Y/%m/%d')
 
-    .. py:attribute:: date_created
+    .. py:attribute:: created
 
         The date and time the post was created, defaults to: ::
 
-            django.db.models.DateTimeField(default=timezone.now)
+            created = models.DateTimeField(default=timezone.now, verbose_name=_("Date & Time Created"))
 
-    .. py:attribute:: date_published
+    .. py:attribute:: last_edited
 
-        The date and time the post was published, defaults to: ::
+        The date and time the post was last edited, defaults to: ::
 
-            django.db.models.DateTimeField(blank=True, null=True)
+            last_edited = models.DateTimeField(default=timezone.now, verbose=_("Date & Time Created"))
     """
 
     author = models.ForeignKey(
@@ -58,8 +58,8 @@ class Post(models.Model):
         null=True,
         upload_to="images/%Y/%m/%d",
     )
-    date_created = models.DateTimeField(default=timezone.now)
-    date_published = models.DateTimeField(blank=True, null=True)
+    created = models.DateTimeField(default=timezone.now, verbose_name=_("Date & Time Created"))
+    last_edited = models.DateTimeField(default=timezone.now, verbose_name=_("Date & Time Last Edited"))
 
     def __str__(self):
         """

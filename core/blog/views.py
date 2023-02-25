@@ -31,7 +31,7 @@ class IndexView(generic.ListView):
     template_name = "blog/index.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super().get_context_data(object_list=object_list, **kwargs)
+        context_data = super().get_context_data(posts=object_list, **kwargs)
 
         context_data.update(
             {
@@ -45,11 +45,12 @@ class IndexView(generic.ListView):
         """
         Return a :py:class:`QuerySet` of posts.
 
-        :returns: A set of Posts published before the ``timezone.now()`` ordered by :py:attr:`blog.models.Post.date_published` (descending).
+        :returns: A set of Posts published before the ``timezone.now()`` ordered by :py:attr:`blog.models.Post.created`
+            (descending).
         :rtype: :py:class:`QuerySet`
         """
-        return Post.objects.filter(date_published__lte=timezone.now()).order_by(
-            "-date_published"
+        return Post.objects.filter(created__lte=timezone.now()).order_by(
+            "-created"
         )
 
 
