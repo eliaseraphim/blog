@@ -77,6 +77,17 @@ class DetailView(generic.DetailView):
     context_object_name = "post"
     template_name = "blog/detail.html"
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super().get_context_data(object_list=object_list, **kwargs)
+
+        context_data.update(
+            {
+                "view_name": "DetailView",
+            }
+        )
+
+        return context_data
+
 
 class NewPostView(LoginRequiredMixin, generic.CreateView):
     """
@@ -129,6 +140,10 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
         return reverse("index")
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
 
 class EditPostView(LoginRequiredMixin, generic.UpdateView):
     """

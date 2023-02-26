@@ -47,7 +47,9 @@ class Post(models.Model):
 
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        blank=True,
         help_text=_("Author of the post."),
+        null=True,
         on_delete=models.CASCADE,
     )
     title = models.CharField(help_text=_("Title of the post."), max_length=200)
