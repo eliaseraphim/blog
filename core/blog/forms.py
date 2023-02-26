@@ -39,6 +39,3 @@ class PostForm(forms.ModelForm):
             "text": forms.Textarea(attrs={"class": "form-control"}),
             "image": forms.ClearableFileInput(attrs={"class": "form-control"}),
         }
-
-
-

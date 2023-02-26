@@ -49,9 +49,7 @@ class IndexView(generic.ListView):
             (descending).
         :rtype: :py:class:`QuerySet`
         """
-        return Post.objects.all().order_by(
-            "-created"
-        )
+        return Post.objects.all().order_by("-created")
 
 
 class DetailView(generic.DetailView):

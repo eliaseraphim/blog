@@ -60,8 +60,12 @@ class Post(models.Model):
         null=True,
         upload_to="images/%Y/%m/%d",
     )
-    created = models.DateTimeField(default=timezone.now, verbose_name=_("Date & Time Created"))
-    last_edited = models.DateTimeField(default=timezone.now, verbose_name=_("Date & Time Last Edited"))
+    created = models.DateTimeField(
+        default=timezone.now, verbose_name=_("Date & Time Created")
+    )
+    last_edited = models.DateTimeField(
+        default=timezone.now, verbose_name=_("Date & Time Last Edited")
+    )
 
     def __str__(self):
         """
