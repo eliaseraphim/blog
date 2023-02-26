@@ -130,20 +130,15 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
 
         return context_data
 
-    def post(self, request, *args, **kwargs):
-        if request.POST:
-            print(request.POST)
-
-        return super().post(request, args, kwargs)
-
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
         return reverse("index")
 
     def form_valid(self, form):
+        """Update the instance's author to be the same as the user who made the request."""
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
+
 
 class EditPostView(LoginRequiredMixin, generic.UpdateView):
     """
