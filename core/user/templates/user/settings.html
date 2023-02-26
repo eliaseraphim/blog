@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-4">
+            <h1>Settings</h1>
+            <h2>User</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item btn btn-primary">
+                    <a class="nav-link">Personal Information</a>
+                </li>
+                <li class="nav-item btn btn-primary">
+                    <a class="nav-link">Bio</a>
+                </li>
+            </ul>
+            <h2>Posts</h2>
+            <ul>
+                {% if posts %}
+                    <ul class="nav flex-column">
+                        {% for post in posts %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "detail" post.pk %}">{{ post.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-8">
+            <div>
+                <p>User Information</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -51,6 +51,7 @@ class Post(models.Model):
         help_text=_("Author of the post."),
         null=True,
         on_delete=models.CASCADE,
+        related_name="posts",
     )
     title = models.CharField(help_text=_("Title of the post."), max_length=200)
     text = models.TextField(help_text=_("Text of the post."))
@@ -75,3 +76,9 @@ class Post(models.Model):
         :rtype: :py:class:`str`
         """
         return self.title
+
+    @classmethod
+    def get_authors_posts(cls, author):
+        return cls.objects.filter(author_id=author.id).order_by(
+            "-created"
+        )

@@ -2,11 +2,28 @@ from django.contrib.auth import views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
+from blog.models import Post
+
 from .forms import LoginForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 
 
 class UserView(LoginRequiredMixin, TemplateView):
     template_name = "user/user.html"
+
+
+class SettingsView(LoginRequiredMixin, TemplateView):
+    template_name = "user/settings.html"
+    post_model = Post
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data.update(
+            {
+                'posts': self.post_model.get_authors_posts(self.request.user)
+            }
+        )
+
+        return context_data
 
 
 class LoginView(views.LoginView):

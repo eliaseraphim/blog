@@ -3,11 +3,15 @@
 {% block content %}
     <div class="row">
         <div class="col-4">
-            <img src="{{ user.avatar.url }}" height="250" style="border-radius: 250px">
+            {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" height="250" style="border-radius: 250px">
+            {% endif %}
             <h1>{{ user.username }}</h1>
             <h2>{{ user.first_name }} {{ user.last_name }}</h2>
             <address>{{ user.email }}</address>
-            <address>Website: <a href="{{ user.website }}">{{ user.website }}</a></address>
+            {% if user.website %}
+                <address>Website: <a href="{{ user.website }}">{{ user.website }}</a></address>
+            {% endif %}
             <p>Joined: {{ user.date_joined.date }} | {{ user.date_joined.time }}</p>
             <div class="d-flex flex-row flex-nowrap justify-content-start align-items-start align-content-start">
                 <p class="mb-1">
@@ -25,11 +29,14 @@
                     <h3>Bio</h3>
                 </div>
                 <div>
-                    <a class="btn btn-warning" href="{% url 'password_change' %}" role="button"><i class="bi bi-person-fill-lock"></i> Change Password</a>
+                    <a class="btn btn-warning" href="{% url 'settings' %}" role="button"><i class="bi bi-person-fill-lock"></i> Update Settings</a>
                 </div>
             </div>
-
-            <p>{{ user.bio }}</p>
+            <div>
+                <p>
+                    {{ user.bio }}
+                </p>
+            </div>
         </div>
     </div>
 {% endblock %}
