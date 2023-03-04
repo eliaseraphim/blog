@@ -42,7 +42,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link navbar-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi-chevron-bar-right"></i> {{ user.username }}
                                 </a>
                                 <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">
+                                <a class="nav-link navbar-link" href="{% url 'login' %}">
                                     <i class="bi-chevron-bar-right"></i> Login
                                 </a>
                             </li>
@@ -68,7 +68,7 @@
                         {% if user.is_authenticated %}
                         <div class="vr d-none d-lg-block mx-3"></div>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'new_post' %}">
+                            <a class="nav-link navbar-link" href="{% url 'new_post' %}">
                                 <i class="bi-pen"></i> Create Post
                             </a>
                         </li>

@@ -15,16 +15,6 @@ class SettingsView(LoginRequiredMixin, TemplateView):
     template_name = "user/settings.html"
     post_model = Post
 
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        context_data.update(
-            {
-                'posts': self.post_model.get_authors_posts(self.request.user)
-            }
-        )
-
-        return context_data
-
 
 class LoginView(views.LoginView):
     form_class = LoginForm

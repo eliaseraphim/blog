@@ -3,32 +3,49 @@
 {% block content %}
     <div class="row">
         <div class="col-4">
-            <h1>Settings</h1>
-            <h2>User</h2>
-            <ul class="nav flex-column">
-                <li class="nav-item btn btn-primary">
-                    <a class="nav-link">Personal Information</a>
-                </li>
-                <li class="nav-item btn btn-primary">
-                    <a class="nav-link">Bio</a>
-                </li>
-            </ul>
-            <h2>Posts</h2>
-            <ul>
-                {% if posts %}
-                    <ul class="nav flex-column">
-                        {% for post in posts %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url "detail" post.pk %}">{{ post.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </ul>
+            <nav class="nav flex-column" role="navigation">
+                <h1>Settings</h1>
+                <h2>User</h2>
+                <nav class="nav flex-column">
+                    <a class="nav-link tab-link p-1" href="#">Username</a>
+                    <a class="nav-link tab-link p-1" href="#">Password</a>
+                    <a class="nav-link tab-link p-1" href="#">Avatar</a>
+                    <a class="nav-link tab-link p-1" href="#">Personal Information</a>
+                    <a class="nav-link tab-link p-1" href="#">Header Image</a>
+                    <a class="nav-link tab-link p-1" href="#">Bio</a>
+                </nav>
+            </nav>
         </div>
         <div class="col-8">
-            <div>
-                <p>User Information</p>
+            <div class="user-form-container">
+                <h2>Personal Information</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
+                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
+                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
+                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
+                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
+                    vulputate. Mollis nunc sed id semper risus.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
+                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
+                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
+                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
+                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
+                    vulputate. Mollis nunc sed id semper risus.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
+                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
+                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
+                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
+                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
+                    vulputate. Mollis nunc sed id semper risus.
+                </p>
             </div>
         </div>
     </div>

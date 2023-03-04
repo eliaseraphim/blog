@@ -1,6 +1,11 @@
 {% block post_form %}
 {% if user.is_authenticated %}
     {% if form %}
+        {% if form.instance %}
+            {% if form.instance.title %}
+                <h2>{{ form.instance.title }}</h2>
+            {% endif %}
+        {% endif %}
         {% if form.errors %}
             {% for error in form.errors %}
                 {{ error }}

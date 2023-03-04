@@ -65,7 +65,7 @@ class Post(models.Model):
         default=timezone.now, verbose_name=_("Date & Time Created")
     )
     last_edited = models.DateTimeField(
-        default=timezone.now, verbose_name=_("Date & Time Last Edited")
+        auto_now=True, verbose_name=_("Date & Time Last Edited")
     )
 
     def __str__(self):
@@ -79,6 +79,4 @@ class Post(models.Model):
 
     @classmethod
     def get_authors_posts(cls, author):
-        return cls.objects.filter(author_id=author.id).order_by(
-            "-created"
-        )
+        return cls.objects.filter(author_id=author.id).order_by("-created")

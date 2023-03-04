@@ -6,6 +6,7 @@
         <h1>Delete</h1>
         <div class="container">
             <article class="post">
+                <h2 class="post-title">{{ post.title }}</h2>
                 {% include 'blog/post/post.html' %}
             </article>
             <form method="POST" class="post-form" enctype="multipart/form-data">

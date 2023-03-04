@@ -6,6 +6,7 @@
             {% if posts %}
                 {% for post in posts %}
                     <article class="post">
+                        <h1><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h1>
                         {% include 'blog/post/post.html' %}
                     </article>
                 {% endfor %}

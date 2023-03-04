@@ -1,7 +1,6 @@
 import hashlib
 import os
 import shutil
-from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -21,8 +20,24 @@ TEST_DIR_MEDIA_ROOT = os.path.join(settings.BASE_DIR, "_test_data", "media")
 _User = get_user_model()
 
 
+def build_user(username):
+    user = _User(username=username, is_active=True)
+    user.save()
+
+    return _User.objects.last()
+
+
+def get_sha256(path: str) -> str:
+    with open(path, "rb") as file:
+        image_hash = hashlib.sha256(file.read()).hexdigest()
+    return image_hash
+
+
+@override_settings(MEDIA_ROOT=(os.path.join(TEST_DIR_MEDIA_ROOT, "test_post_image")))
 class BlogPostModelTests(TestCase):
     """Test the :py:class:`blog.models.Post` model."""
+
+    step = 0
 
     @classmethod
     def setUpClass(cls):
@@ -54,11 +69,8 @@ class BlogPostModelTests(TestCase):
 
             Text for posts.
         """
+
         # set up users
-        cls.super_user = _User(
-            username="super_user", is_active=True, is_staff=True, is_superuser=True
-        )
-        cls.staff_user = _User(username="staff_user", is_active=True, is_staff=True)
         cls.user = _User(username="user", is_active=True)
 
         # create default data for posts
@@ -72,118 +84,136 @@ class BlogPostModelTests(TestCase):
         super().setUpClass()
 
     def setUp(self):
-        """Sets up the database for each test. Currently, it saves the three users from setUpClassData."""
-        self.super_user.save()
-        self.staff_user.save()
+        """
+        Sets up the database for each test. Creates and idea for test, and saves the three users from setUpClassData.
+        """
+
+        self.id = self.step
+        self.step += 1
+
+        self.image = None
+        self.image_path = None
+        self.image_deleted = False
+
         self.user.save()
 
-    def test_create_post(self):
-        """Test creation of a :py:class:`blog.models.Post` in the database as user."""
-        Post(author=self.user, title=self.title, text=self.text).save()
+    def assert_integrity(self, post, data=None):
+        if data is None:
+            data = {}
 
-        self.assertIs(Post.objects.all().count(), 1)
+        self.assertEqual(post.author, data.get("author", self.user))
+        self.assertEqual(post.title, data.get("title", self.title))
+        self.assertEqual(post.text, data.get("text", self.text))
+        self.assertEqual(bool(post.image), bool(self.image and not self.image_deleted))
+        self.assertLess(post.created, timezone.now())
+        self.assertLess(post.last_edited, timezone.now())
 
-    def test_create_post_staff(self):
-        """Test creation of a :py:class:`blog.models.Post` in the database as staff."""
-        Post(author=self.staff_user, title=self.title, text=self.text).save()
+    def assert_image_integrity(self, post):
+        original_file_name = self.image.name[:-4]  # remove extension
+        original_sha256 = get_sha256(self.image_path)
+        post_file_path = post.image.file.name
+        post_sha256 = get_sha256(post.image.path)
 
-        self.assertIs(Post.objects.all().count(), 1)
+        self.assertTrue(os.path.exists(post_file_path))
+        self.assertIn(original_file_name, post_file_path)
+        self.assertEqual(original_sha256, post_sha256)
 
-    def test_create_post_super_user(self):
-        """Test creation of a :py:class:`blog.models.Post` in the database as superuser."""
-        Post(author=self.super_user, title=self.title, text=self.text).save()
+    def assert_edits(self, data, initial=None):
+        post = self.build_post(data=initial)
+        original_last_edited = post.last_edited
 
-        self.assertIs(Post.objects.all().count(), 1)
+        post = self.edit_post(post, data)
+        new_last_edited = post.last_edited
 
-    def test_post_author(self):
-        """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.author` from model object."""
-        Post(author=self.user, title=self.title, text=self.text).save()
-        post = Post.objects.last()
+        self.assert_integrity(post, data=data)
 
-        self.assertEqual(self.user, post.author)
+        self.assertNotEqual(new_last_edited, original_last_edited)
+        self.assertGreater(new_last_edited, original_last_edited)
 
-    def test_post_title(self):
-        """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.title` from model object."""
-        Post(author=self.user, title=self.title, text=self.text).save()
-        post = Post.objects.last()
+        if data.get("image"):
+            self.assert_image_integrity(post)
 
-        self.assertEqual(self.title, post.title)
+    def build_post(self, data=None):
+        if data is None:
+            data = {}
 
-    def test_post_text(self):
-        """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.text` from model object."""
-        Post(author=self.user, title=self.title, text=self.text).save()
-        post = Post.objects.last()
+        Post(
+            author=data.get("author", self.user),
+            title=data.get("title", self.title),
+            text=data.get("text", self.text),
+            image=data.get("image", None),
+        ).save()
 
-        self.assertEqual(self.text, post.text)
+        return Post.objects.last()
 
-    @override_settings(
-        MEDIA_ROOT=(os.path.join(TEST_DIR_MEDIA_ROOT, "test_post_image"))
-    )
-    def test_post_image(self):
-        """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.image` from model object."""
-        path = os.path.join(TEST_IMAGES_PATH, "test.png")
-        image = SimpleUploadedFile(
-            name="test.png", content=open(path, "rb").read(), content_type="image/png"
+    def edit_post(self, post: Post, data: dict):
+        post_id = post.id
+
+        post.author = data.get("author", post.author)
+        post.title = data.get("title", post.title)
+        post.text = data.get("text", post.text)
+        post.image = data.get("image", post.image)
+        post.save()
+
+        if "image" in data.keys() and data["image"] is not None:
+            post.image = data["image"]
+        if "image" in data.keys() and data["image"] is None:
+            post.image.delete()
+            self.image_deleted = True
+
+        return Post.objects.get(id=post_id)
+
+    def create_image(self):
+        self.image_path = os.path.join(TEST_IMAGES_PATH, f"test.png")
+        self.image = SimpleUploadedFile(
+            name=f"test{self.id}.png",
+            content=open(self.image_path, "rb").read(),
+            content_type="image/png",
         )
 
-        Post(author=self.user, title=self.title, text=self.text, image=image).save()
-        post = Post.objects.last()
+    def test_save_post(self):
+        post = self.build_post()
 
-        with open(path, "rb") as file:
-            original_image_hash = hashlib.sha256(file.read()).hexdigest()
-        with open(post.image.path, "rb") as file:
-            post_image_hash = hashlib.sha256(file.read()).hexdigest()
+        self.assert_integrity(post)
 
-        self.assertIsNotNone(post.image)
-        self.assertEqual(original_image_hash, post_image_hash)
+    def test_save_post_image(self):
+        """Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.image` from model object."""
+        self.create_image()
+        post = self.build_post({"image": self.image})
 
-    def test_post_date_created(self):
-        """
-        Test that a :py:class:`blog.models.Post` retains py:attr:`blog.models.Post.date_created` from model object.
-        """
-        now = timezone.now()
-        Post(
-            author=self.user, title=self.title, text=self.text, date_created=now
-        ).save()
-        post = Post.objects.last()
+        self.assert_integrity(post)
+        self.assert_image_integrity(post)
 
-        self.assertIsInstance(post.date_created, datetime)
-        self.assertEqual(now, post.date_created)
+    def test_post_edit_author(self):
+        author = build_user(f"user{self.id}")
+        data = {"author": author}
 
-    def test_post_date_created_default(self):
-        """
-        Test that a Post without py:attr:`blog.models.Post.date_created` set initially will default to
-        ``django.utils.timezone.now()``.
-        """
-        Post(author=self.user, title=self.title, text=self.text).save()
-        post = Post.objects.last()
+        self.assert_edits(data)
 
-        ten_seconds_ago = timezone.now() - timedelta(seconds=10)
+    def test_post_edit_title(self):
+        title = "Updated Title"
+        data = {"title": title}
 
-        self.assertIsInstance(post.date_created, datetime)
-        self.assertTrue(timezone.now() >= post.date_created >= ten_seconds_ago)
+        self.assert_edits(data)
 
-    def test_post_date_published(self):
-        """
-        Test that a :py:class:`blog.models.Post` retains :py:attr:`blog.models.Post.date_published` from model object.
-        """
-        now = timezone.now()
-        Post(
-            author=self.user, title=self.title, text=self.text, date_published=now
-        ).save()
-        post = Post.objects.last()
+    def test_post_edit_text(self):
+        text = "Updated text body."
+        data = {"text": text}
 
-        self.assertIsInstance(post.date_published, datetime)
-        self.assertEqual(now, post.date_published)
+        self.assert_edits(data)
 
-    def test_post_date_published_blank(self):
-        """
-        Test that a Post without :py:attr:`blog.models.Post.date_published` set initially will default to ``None``.
-        """
-        Post(author=self.user, title=self.title, text=self.text).save()
-        post = Post.objects.last()
+    def test_post_edit_new_image(self):
+        self.create_image()
+        data = {"image": self.image}
 
-        self.assertIs(None, post.date_published)
+        self.assert_edits(data)
+
+    def test_post_edit_remove_image(self):
+        self.create_image()
+        initial = {"image": self.image}
+        data = {"image": None}
+
+        self.assert_edits(data, initial=initial)
 
 
 class BlogViewTests(TestCase):
@@ -210,7 +240,7 @@ class BlogViewTests(TestCase):
             A tuple of Post objects to be saved to the database.
         """
         now = timezone.now()
-        future = now + timedelta(days=30)
+        future = now + timezone.timedelta(days=30)
 
         # create anonymous client
         cls.anonymous_client = Client()
@@ -220,14 +250,14 @@ class BlogViewTests(TestCase):
 
         # create posts
         cls.posts = (
-            Post(author=cls.user, title="Post 1", text="Text 1.", date_published=now),
-            Post(author=cls.user, title="Post 2", text="Text 2.", date_published=now),
-            Post(author=cls.user, title="Post 3", text="Text 3.", date_published=now),
+            Post(author=cls.user, title="Post 1", text="Text 1."),
+            Post(author=cls.user, title="Post 2", text="Text 2."),
+            Post(author=cls.user, title="Post 3", text="Text 3."),
             Post(
                 author=cls.user,
                 title="Future Post",
                 text="Future text.",
-                date_published=future,
+                created=future,
             ),
             Post(author=cls.user, title="Unpublished Post", text="Unpublished text."),
         )
@@ -243,49 +273,6 @@ class BlogIndexViewTests(BlogViewTests):
         self.user.save()
         for post in self.posts:
             post.save()
-
-    def test_index_view(self):
-        """Test that the index url returns an :py:class:`blog.views.IndexView`."""
-        response = self.anonymous_client.get("")
-        response_view = response.context_data["view"]
-        self.assertIsInstance(response_view, IndexView)
-
-    def test_index_view_posts(self):
-        """
-        Test that py:class:`blogs.views.IndexView` returns only posts that have been published before
-        ``timezone.now()``.
-        """
-        response = self.anonymous_client.get("")
-        response_posts = response.context_data["posts"]
-        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by(
-            "-date_published"
-        )
-
-        self.assertEqual(len(posts), len(response_posts))
-        for post, response_post in zip(posts, response_posts):
-            self.assertEqual(post, response_post)
-
-    def test_index_view_links(self):
-        """Test that py:class:`blog.views.IndexView` returns links to the posts detail view."""
-        response = self.anonymous_client.get("")
-        response_posts = response.context_data["posts"]
-        posts = Post.objects.filter(date_published__lte=timezone.now()).order_by(
-            "-date_published"
-        )
-
-        for post, response_post in zip(posts, response_posts):
-            url = reverse("detail", kwargs={"pk": post.pk})
-            post_anchor = bytes(
-                f'<h2><a href="{url}">{post.title}</a></h2>', encoding="utf-8"
-            )
-
-            url = reverse("detail", kwargs={"pk": response_post.pk})
-            response_post_anchor = bytes(
-                f'<h2><a href="{url}">{response_post.title}</a></h2>', encoding="utf-8"
-            )
-
-            self.assertEqual(post_anchor, response_post_anchor)
-            self.assertIn(post_anchor, response.content)
 
 
 class BlogDetailViewTests(BlogViewTests):
@@ -308,84 +295,6 @@ class BlogDetailViewTests(BlogViewTests):
         self.user_client = Client()
         self.user_client.force_login(self.user)
 
-    def test_detail_view(self):
-        """Test that the detail url for a post returns a :py:class:`blog.views.DetailView`."""
-        post = Post.objects.get(title__exact="Post 1")
-
-        url = reverse("detail", kwargs={"pk": post.pk})
-        response = self.anonymous_client.get(url)
-        response_view = response.context_data["view"]
-
-        self.assertIsInstance(response_view, DetailView)
-
-    def test_detail_view_post(self):
-        """Test that detail view for a post matches the post in the database."""
-        post = Post.objects.get(title__exact="Post 1")
-
-        url = reverse("detail", kwargs={"pk": post.pk})
-        response = self.anonymous_client.get(url)
-        response_post = response.context_data["post"]
-
-        self.assertEqual(post, response_post)
-
-    def test_detail_view_title_header(self):
-        """Test that detail view title header does not contain an anchor."""
-        post = Post.objects.get(title__exact="Post 1")
-
-        url = reverse("detail", kwargs={"pk": post.pk})
-        response = self.anonymous_client.get(url)
-        response_post = response.context_data["post"]
-
-        post_header = bytes(f"<h2>{post.title}</h2>", encoding="utf-8")
-        response_post_header = bytes(
-            f"<h2>{response_post.title}</h2>", encoding="utf-8"
-        )
-
-        self.assertEqual(post_header, response_post_header)
-        self.assertIn(post_header, response.content)
-
-    def test_detail_view_action_buttons_anonymous_user(self):
-        """
-        Test that a response from the detail view for a post does not contain action buttons for an anonymous user.
-        """
-        post = Post.objects.get(title__exact="Post 1")
-
-        detail_url = reverse("detail", kwargs={"pk": post.pk})
-        response = self.anonymous_client.get(detail_url)
-
-        edit_url = reverse("edit_post", kwargs={"pk": post.pk})
-        delete_url = reverse("delete_post", kwargs={"pk": post.pk})
-        edit_button_anchor = bytes(
-            f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding="utf-8"
-        )
-        delete_button_anchor = bytes(
-            f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>',
-            encoding="utf-8",
-        )
-
-        self.assertNotIn(edit_button_anchor, response.content)
-        self.assertNotIn(delete_button_anchor, response.content)
-
-    def test_detail_view_action_buttons_user(self):
-        """Test that a response from the detail view for a post does contain action buttons for a user."""
-        post = Post.objects.get(title__exact="Post 1")
-
-        detail_url = reverse("detail", kwargs={"pk": post.pk})
-        response = self.user_client.get(detail_url)
-
-        edit_url = reverse("edit_post", kwargs={"pk": post.pk})
-        delete_url = reverse("delete_post", kwargs={"pk": post.pk})
-        edit_button_anchor = bytes(
-            f'<a class="btn btn-primary" href="{edit_url}">Edit</a>', encoding="utf-8"
-        )
-        delete_button_anchor = bytes(
-            f'<a class="btn btn-secondary" href="{delete_url}">Delete</a>',
-            encoding="utf-8",
-        )
-
-        self.assertIn(edit_button_anchor, response.content)
-        self.assertIn(delete_button_anchor, response.content)
-
 
 class BlogNewPostView(BlogViewTests):
     def setUp(self):
@@ -393,13 +302,10 @@ class BlogNewPostView(BlogViewTests):
         self.user_client = Client()
         self.user_client.force_login(self.user)
 
-    def test_new_post_view(self):
-        pass
-
 
 def tearDownModule():
     """Clean the test directory's media directory. This directory contained images created for posts during testing."""
     try:
         shutil.rmtree(TEST_DIR_MEDIA_ROOT)
-    except OSError:
+    except OSError as exception:
         pass

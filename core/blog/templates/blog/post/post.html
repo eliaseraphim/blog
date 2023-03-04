@@ -1,11 +1,6 @@
 {% load markdownify %}
 
 {% block post %}
-    {% if view_name == 'IndexView' or view_name == 'DetailView' %}
-        <h1><a href="{% url 'detail' pk=post.pk %}">{{ post.title }}</a></h1>
-    {% else %}
-        <h2>{{ post.title }}</h2>
-    {% endif %}
     <div>
         <div class="post-text">
             {{ post.text|markdownify }}

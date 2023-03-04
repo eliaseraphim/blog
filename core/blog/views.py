@@ -30,17 +30,6 @@ class IndexView(generic.ListView):
     context_object_name = "posts"
     template_name = "blog/index.html"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super().get_context_data(object_list=object_list, **kwargs)
-
-        context_data.update(
-            {
-                "view_name": "IndexView",
-            }
-        )
-
-        return context_data
-
     def get_queryset(self):
         """
         Return a :py:class:`QuerySet` of posts.
@@ -75,17 +64,6 @@ class DetailView(generic.DetailView):
     context_object_name = "post"
     template_name = "blog/detail.html"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super().get_context_data(object_list=object_list, **kwargs)
-
-        context_data.update(
-            {
-                "view_name": "DetailView",
-            }
-        )
-
-        return context_data
-
 
 class NewPostView(LoginRequiredMixin, generic.CreateView):
     """
@@ -110,23 +88,6 @@ class NewPostView(LoginRequiredMixin, generic.CreateView):
     form_class = PostForm
     context_object_name = "form"
     template_name = "blog/post/actions/new.html"
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert the form into the context data, with additional context for the action button.
-
-        :returns: ``context_data``
-        :rtype: :py:class:`dict`
-        """
-        context_data = super().get_context_data(**kwargs)
-        context_data.update(
-            {
-                "form_action": "Save Post",
-                "button_text": "Save",
-            }
-        )
-
-        return context_data
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
@@ -162,23 +123,6 @@ class EditPostView(LoginRequiredMixin, generic.UpdateView):
     context_object_name = "form"
     template_name = "blog/post/actions/edit.html"
 
-    def get_context_data(self, **kwargs):
-        """
-        Insert the form into the context data, with additional context for the action button.
-
-        :returns: ``context_data``
-        :rtype: :py:class:`dict`
-        """
-        context_data = super().get_context_data(**kwargs)
-        context_data.update(
-            {
-                "form_action": "Edit Post",
-                "button_text": "Edit",
-            }
-        )
-
-        return context_data
-
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to py:class:`IndexView`."""
         return reverse("index")
@@ -206,23 +150,6 @@ class DeletePostView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     context_object_name = "post"
     template_name = "blog/post/actions/delete.html"
-
-    def get_context_data(self, **kwargs):
-        """
-        Insert the form into the context data, with additional context for the action button.
-
-        :returns: ``context_data``
-        :rtype: :py:class:`dict`
-        """
-        context_data = super().get_context_data(**kwargs)
-        context_data.update(
-            {
-                "form_action": "Delete Post",
-                "button_text": "Delete",
-            }
-        )
-
-        return context_data
 
     def get_success_url(self):
         """Return the URL to redirect to after processing a valid form. Returns to :py:class:`IndexView`."""
