@@ -7,7 +7,7 @@
                 <h1>Settings</h1>
                 <h2>Account</h2>
                 <nav class="nav flex-column">
-                    <a class="nav-link tab-link p-1" href="#">Username</a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_username' %}">Username</a>
                     <a class="nav-link tab-link p-1" href="#">Password</a>
                     <a class="nav-link tab-link p-1" href="#">Avatar</a>
                     <a class="nav-link tab-link p-1" href="#">Personal Information</a>
@@ -19,6 +19,8 @@
         <div class="col-8">
             <div class="user-form-container">
                 {% block settings_form %}
+                    <h2>{{ user.username }}</h2>
+                    <p>Update your settings here, by selecting one of the tabs to the left.</p>
                 {% endblock settings_form %}
             </div>
         </div>

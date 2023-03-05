@@ -1,19 +1,24 @@
-from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import UpdateView
+from django.views.generic import TemplateView, UpdateView
 
+from user.actions.update import forms
 from user.models import User
-from user.forms import PasswordChangeForm, UsernameForm
+
+
+class SettingsView(LoginRequiredMixin, TemplateView):
+    template_name = "user/settings.html"
 
 
 class UpdateUsernameView(LoginRequiredMixin, UpdateView):
     model = User
-    form_class = UsernameForm
+    form_class = forms.UsernameForm
     template_name = "user/update/username.html"
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 class UpdatePasswordView(LoginRequiredMixin, UpdateView):
-    form_class = PasswordChangeForm
     pass
 
 
