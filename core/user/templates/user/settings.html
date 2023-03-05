@@ -7,12 +7,28 @@
                 <h1>Settings</h1>
                 <h2>Account</h2>
                 <nav class="nav flex-column">
-                    <a class="nav-link tab-link p-1" href="{% url 'update_username' %}">Username</a>
-                    <a class="nav-link tab-link p-1" href="#">Password</a>
-                    <a class="nav-link tab-link p-1" href="#">Avatar</a>
-                    <a class="nav-link tab-link p-1" href="#">Personal Information</a>
-                    <a class="nav-link tab-link p-1" href="#">Header</a>
-                    <a class="nav-link tab-link p-1" href="#">Bio</a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_username' %}">
+                        Username
+                    </a>
+                    <a class="nav-link tab-link p-1" href="#">
+                        Email
+                    </a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_password' %}">
+                        Password
+                    </a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_avatar' %}">
+                        Avatar
+                    </a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_name' %}">
+                        Name
+                    </a>
+                    <a class="nav-link tab-link p-1" href="#">Website</a>
+                    <a class="nav-link tab-link p-1" href="{% url 'update_header' %}">
+                        Header
+                    </a>
+                    <a class="nav-link tab-link p-1" href="#">
+                        Bio
+                    </a>
                 </nav>
             </nav>
         </div>

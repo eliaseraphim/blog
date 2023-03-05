@@ -44,7 +44,7 @@ class SetPasswordForm(auth_forms.SetPasswordForm):
     field_order = ["new_password1", "new_password2"]
 
 
-class PasswordChangeForm(SetPasswordForm):
+class PasswordChangeForm(auth_forms.PasswordChangeForm):
     old_password = forms.CharField(
         label=_("Old Password"),
         strip=False,
@@ -54,6 +54,28 @@ class PasswordChangeForm(SetPasswordForm):
                 "autofocus": True,
                 "class": "form-control",
                 "placeholder": "Enter your old password here...",
+            }
+        ),
+    )
+    new_password1 = forms.CharField(
+        label=_("New Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "class": "form-control",
+                "placeholder": "Enter your new password here...",
+            }
+        ),
+    )
+    new_password2 = forms.CharField(
+        label=_("Confirm New Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "class": "form-control",
+                "placeholder": "Enter your new password here...",
             }
         ),
     )
