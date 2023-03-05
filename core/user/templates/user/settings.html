@@ -5,48 +5,22 @@
         <div class="col-4">
             <nav class="nav flex-column" role="navigation">
                 <h1>Settings</h1>
-                <h2>User</h2>
+                <h2>Account</h2>
                 <nav class="nav flex-column">
                     <a class="nav-link tab-link p-1" href="#">Username</a>
                     <a class="nav-link tab-link p-1" href="#">Password</a>
                     <a class="nav-link tab-link p-1" href="#">Avatar</a>
                     <a class="nav-link tab-link p-1" href="#">Personal Information</a>
-                    <a class="nav-link tab-link p-1" href="#">Header Image</a>
+                    <a class="nav-link tab-link p-1" href="#">Header</a>
                     <a class="nav-link tab-link p-1" href="#">Bio</a>
                 </nav>
             </nav>
         </div>
         <div class="col-8">
             <div class="user-form-container">
-                <h2>Personal Information</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
-                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
-                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
-                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
-                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
-                    vulputate. Mollis nunc sed id semper risus.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
-                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
-                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
-                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
-                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
-                    vulputate. Mollis nunc sed id semper risus.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ac placerat vestibulum lectus mauris ultrices. Blandit turpis
-                    cursus in hac habitasse platea dictumst quisque. In metus vulputate eu scelerisque felis imperdiet
-                    proin. Eget nulla facilisi etiam dignissim diam quis. Ante metus dictum at tempor commodo. Donec
-                    ultrices tincidunt arcu non sodales neque sodales ut. Fringilla phasellus faucibus scelerisque
-                    eleifend donec pretium vulputate sapien. Phasellus faucibus scelerisque eleifend donec pretium
-                    vulputate. Mollis nunc sed id semper risus.
-                </p>
+                {% block settings_form %}
+                {% endblock settings_form %}
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import forms as auth_forms
 from django.utils.translation import gettext_lazy as _
 
+from . models import User
+
 
 class LoginForm(auth_forms.AuthenticationForm):
     username = auth_forms.UsernameField(
@@ -89,3 +91,12 @@ class PasswordChangeForm(SetPasswordForm):
     )
 
     field_order = ["old_password", "new_password1", "new_password2"]
+
+
+class UsernameForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["username"]
+        widgets = {
+            "username": forms.TextInput(attrs={"class": "form-control"}),
+        }

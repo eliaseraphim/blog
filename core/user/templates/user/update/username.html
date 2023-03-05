@@ -1,0 +1,15 @@
+{% extends 'user/settings.html' %}
+
+{% block settings_form %}
+    <h2>Update Username</h2>
+    <p>Update your username. 150 characters or fewer. Letters, digits and @/./+/-/_ only. </p>
+    <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            {% include 'user/forms/base.html' %}
+            <div class="mt-5 mb-3 d-block">
+                <input class="btn btn-primary" type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+{% endblock settings_form %}
