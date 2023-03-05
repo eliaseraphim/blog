@@ -12,7 +12,7 @@ class UpdateUsernameView(LoginRequiredMixin, UpdateView):
     template_name = "user/update/username.html"
 
 
-class UpdatePasswordView(PasswordChangeView):
+class UpdatePasswordView(LoginRequiredMixin, UpdateView):
     form_class = PasswordChangeForm
     pass
 
